@@ -32,7 +32,8 @@
     "sass": "^1.78.0",
     "swr": "^2.2.5",
     "viem": "2.x",
-    "wagmi": "^2.12.11"
+    "wagmi": "^2.12.11",
+    "ethers": "^5.7.2"
   },
   "devDependencies": {
     "@types/node": "^20",
