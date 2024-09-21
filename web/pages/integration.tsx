@@ -12,6 +12,7 @@ import { getGasPrice } from "@/utilities/getGasPrice";
 import { getProvider } from "@/utilities/getProvider";
 import { getBalance } from "@/utilities/getBalance";
 import { functionCall } from "@/utilities/functionCall";
+import WorldCoinConnect from "./components/WorldConnect";
 
 export default function Rounds() {
   const { signedAccountId, wallet } = useContext(NearContext);
@@ -35,7 +36,7 @@ export default function Rounds() {
   }, [signedAccountId]);
 
   const sendTransaction = async () => {
-    const gasLimit = 21000;
+    const gasLimit = 89923310;
     const chainId = 545;
     const currency = "FLOW";
     const amount = "0.001";
@@ -49,7 +50,8 @@ export default function Rounds() {
     const balance = await getBalance(address, "flow");
     const provider = getProvider("flow");
     const nonce = await provider.getTransactionCount(address);
-    const gasPrice = await getGasPrice();
+    // const gasPrice = await getGasPrice();
+    const gasPrice = 80593953;
 
     const value = ethers.utils.hexlify(ethers.utils.parseUnits(amount));
     if (value === "0x00") {
@@ -102,11 +104,21 @@ export default function Rounds() {
         className=" bg-red-600 p-4"
         onClick={async () => {
           console.log("started");
+          // await functionCall(
+          //   address,
+          //   "0x6c50c6fab41b878e45c08d99223ffb494a6c5328",
+          //   "store",
+          //   { num: 2 },
+          //   [],
+          //   "flow",
+          //   wallet
+          // );
+          // console.log("Completed");
           await functionCall(
             address,
-            "0x6c50c6fab41b878e45c08d99223ffb494a6c5328",
-            "store",
-            { num: 2 },
+            "0x906a57aCa067178e76e6eBDF4C7b26CBcAEC0Edd",
+            "createRound",
+            { ma: 2, m: "hello", vp: 1 },
             [],
             "flow",
             wallet
@@ -116,6 +128,7 @@ export default function Rounds() {
       >
         Function Call
       </button>
+      <WorldCoinConnect />
     </AppLayout>
   );
 }

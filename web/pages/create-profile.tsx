@@ -6,6 +6,11 @@ import AppLayout from "@/layouts/AppLayout";
 
 export default function CreateRound() {
   const [createProfileLoading, setCreateProfileLoading] = useState(false);
+  const [name, setName] = useState(""); // State for 'Your Name'
+  const [profilePictureUrl, setProfilePictureUrl] = useState(""); // State for 'Profile Picture URL'
+  const [twitterProfileUrl, setTwitterProfileUrl] = useState(""); // State for 'Twitter Profile URL'
+  const [farcasterProfileUrl, setFarcasterProfileUrl] = useState(""); // State for 'Farcaster Profile URL'
+  const [about, setAbout] = useState(""); // State for 'About'
 
   const createProfile = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -13,6 +18,17 @@ export default function CreateRound() {
     console.log("Creating profile...");
     try {
       // TODO: Make contract call to create profile
+      const metadata = {
+        name,
+        profilePictureUrl,
+        twitterProfileUrl,
+        farcasterProfileUrl,
+        about,
+      };
+
+      const data = JSON.stringify(metadata);
+      console.log("Profile data:", data);
+      // Call create Profile
     } catch (error) {
       console.error(error);
     } finally {
@@ -43,16 +59,18 @@ export default function CreateRound() {
                 <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="name"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Your Name</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         placeholder="Real Slim Shady"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
@@ -61,17 +79,19 @@ export default function CreateRound() {
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="profilePictureUrl"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Profile Picture URL</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="https://onlyfans.com/media/real-slim-shady.jpg"
+                        id="profilePictureUrl"
+                        name="profilePictureUrl"
+                        type="text"
+                        value={profilePictureUrl}
+                        onChange={(e) => setProfilePictureUrl(e.target.value)}
+                        placeholder="https://your-profile-pic-url.jpg"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -79,17 +99,19 @@ export default function CreateRound() {
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="twitterProfileUrl"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Twitter Profile URL</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="https://onlyfans.com/media/real-slim-shady.jpg"
+                        id="twitterProfileUrl"
+                        name="twitterProfileUrl"
+                        type="text"
+                        value={twitterProfileUrl}
+                        onChange={(e) => setTwitterProfileUrl(e.target.value)}
+                        placeholder="https://twitter.com/your-profile"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -97,17 +119,19 @@ export default function CreateRound() {
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="farcasterProfileUrl"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Farcaster Profile URL</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="https://onlyfans.com/media/real-slim-shady.jpg"
+                        id="farcasterProfileUrl"
+                        name="farcasterProfileUrl"
+                        type="text"
+                        value={farcasterProfileUrl}
+                        onChange={(e) => setFarcasterProfileUrl(e.target.value)}
+                        placeholder="https://farcaster.xyz/your-profile"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -125,8 +149,10 @@ export default function CreateRound() {
                         id="about"
                         name="about"
                         rows={3}
+                        value={about}
+                        onChange={(e) => setAbout(e.target.value)}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                        defaultValue={""}
+                        placeholder="Write a few sentences about yourself"
                       />
                     </div>
                     <p className="mt-3 text-sm leading-6 text-gray-600">
