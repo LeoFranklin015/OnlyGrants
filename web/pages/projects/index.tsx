@@ -108,18 +108,10 @@ const projects = [
 ];
 
 const Card: React.FC<Project> = ({
-  network,
   name,
-  openSourceObserverName,
-  website,
   projectLogoUrl,
   projectCoverUrl,
   description,
-  createdDate,
-  twitterUrl,
-  ownerAddress,
-  fundingSources,
-  teamSize,
 }) => {
   const { setPopupData, togglePopupVisibility } = usePopup();
 

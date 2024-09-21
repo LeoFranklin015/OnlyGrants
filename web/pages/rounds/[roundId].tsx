@@ -3,104 +3,109 @@
 import { useRouter } from "next/router";
 
 import AppLayout from "@/layouts/AppLayout";
-import { CalendarIcon, CurrencyDollarIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { CalendarIcon } from "@heroicons/react/24/outline";
+import { usePopup } from "@/utilities/projectContext";
+
+interface Project {
+  network: string;
+  name: string;
+  openSourceObserverName: string;
+  website: string;
+  projectLogoUrl: string;
+  projectCoverUrl: string;
+  description: string;
+  createdDate: string; // ISO 8601 format date
+  twitterUrl: string;
+  ownerAddress: string;
+  fundingSources: string;
+  teamSize: number;
+}
 
 const projects = [
   {
-    id: 1,
-    title: "Boost your conversion rate",
-    href: "#",
+    network: "Ethereum",
+    name: "MesonFi",
+    openSourceObserverName: "MesonFi",
+    website: "https://meson.fi/",
+    projectLogoUrl:
+      "https://docs.meson.fi/~gitbook/image?url=https%3A%2F%2F1966107664-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FWJ9Xuoax4XwtI4AskpIb%252Ficon%252FL1gVbDPzMVPwHEi51o4W%252Flogo192.png%3Falt%3Dmedia%26token%3D4f3d4d82-dd19-4ddb-b9ce-eaa23cfdb32f&width=32&dpr=1&quality=100&sign=a1a21306&sv=1",
+    projectCoverUrl:
+      "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     description:
-      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: { title: "Marketing", href: "#" },
-    author: {
-      name: "Michael Foster",
-      role: "Co-Founder / CTO",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
+      "MesonFi is a decentralized finance platform that allows users to earn interest on their crypto assets.",
+    createdDate: "2024-07-16T00:00:00.000Z",
+    twitterUrl: "https://twitter.com/mesonfi",
+    ownerAddress: "0xD1Ffeuo47briwgyfwi7b4749gbwig979bh6Caa",
+    fundingSources: "None",
+    teamSize: 1,
   },
   {
-    id: 2,
-    title: "How to use search engine optimization to drive sales",
-    href: "#",
+    network: "Ethereum",
+    name: "MesonFi",
+    openSourceObserverName: "MesonFi",
+    website: "https://meson.fi/",
+    projectLogoUrl:
+      "https://docs.meson.fi/~gitbook/image?url=https%3A%2F%2F1966107664-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FWJ9Xuoax4XwtI4AskpIb%252Ficon%252FL1gVbDPzMVPwHEi51o4W%252Flogo192.png%3Falt%3Dmedia%26token%3D4f3d4d82-dd19-4ddb-b9ce-eaa23cfdb32f&width=32&dpr=1&quality=100&sign=a1a21306&sv=1",
+    projectCoverUrl:
+      "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     description:
-      "Optio cum necessitatibus in. Quaerat esse labore sit modi dolores saepe. Sint facilis dolores aut. Veniam accusamus vel. Repellendus natus quae ducimus eligendi. Id et quia aut.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    date: "Mar 10, 2020",
-    datetime: "2020-03-10",
-    category: { title: "SEO", href: "#" },
-    author: {
-      name: "Brenna Goyette",
-      role: "Co-Founder / CEO",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
+      "MesonFi is a decentralized finance platform that allows users to earn interest on their crypto assets.",
+    createdDate: "2024-07-16T00:00:00.000Z",
+    twitterUrl: "https://twitter.com/mesonfi",
+    ownerAddress: "0xD1Ffeuo47briwgyfwi7b4749gbwig979bh6Caa",
+    fundingSources: "None",
+    teamSize: 1,
   },
   {
-    id: 2,
-    title: "How to use search engine optimization to drive sales",
-    href: "#",
+    network: "Ethereum",
+    name: "MesonFi",
+    openSourceObserverName: "MesonFi",
+    website: "https://meson.fi/",
+    projectLogoUrl:
+      "https://docs.meson.fi/~gitbook/image?url=https%3A%2F%2F1966107664-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FWJ9Xuoax4XwtI4AskpIb%252Ficon%252FL1gVbDPzMVPwHEi51o4W%252Flogo192.png%3Falt%3Dmedia%26token%3D4f3d4d82-dd19-4ddb-b9ce-eaa23cfdb32f&width=32&dpr=1&quality=100&sign=a1a21306&sv=1",
+    projectCoverUrl:
+      "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     description:
-      "Optio cum necessitatibus in. Quaerat esse labore sit modi dolores saepe. Sint facilis dolores aut. Veniam accusamus vel. Repellendus natus quae ducimus eligendi. Id et quia aut.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    date: "Mar 10, 2020",
-    datetime: "2020-03-10",
-    category: { title: "SEO", href: "#" },
-    author: {
-      name: "Brenna Goyette",
-      role: "Co-Founder / CEO",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
+      "MesonFi is a decentralized finance platform that allows users to earn interest on their crypto assets.",
+    createdDate: "2024-07-16T00:00:00.000Z",
+    twitterUrl: "https://twitter.com/mesonfi",
+    ownerAddress: "0xD1Ffeuo47briwgyfwi7b4749gbwig979bh6Caa",
+    fundingSources: "None",
+    teamSize: 1,
   },
   {
-    id: 2,
-    title: "How to use search engine optimization to drive sales",
-    href: "#",
+    network: "Ethereum",
+    name: "MesonFi",
+    openSourceObserverName: "MesonFi",
+    website: "https://meson.fi/",
+    projectLogoUrl:
+      "https://docs.meson.fi/~gitbook/image?url=https%3A%2F%2F1966107664-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FWJ9Xuoax4XwtI4AskpIb%252Ficon%252FL1gVbDPzMVPwHEi51o4W%252Flogo192.png%3Falt%3Dmedia%26token%3D4f3d4d82-dd19-4ddb-b9ce-eaa23cfdb32f&width=32&dpr=1&quality=100&sign=a1a21306&sv=1",
+    projectCoverUrl:
+      "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     description:
-      "Optio cum necessitatibus in. Quaerat esse labore sit modi dolores saepe. Sint facilis dolores aut. Veniam accusamus vel. Repellendus natus quae ducimus eligendi. Id et quia aut.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    date: "Mar 10, 2020",
-    datetime: "2020-03-10",
-    category: { title: "SEO", href: "#" },
-    author: {
-      name: "Brenna Goyette",
-      role: "Co-Founder / CEO",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
+      "MesonFi is a decentralized finance platform that allows users to earn interest on their crypto assets.",
+    createdDate: "2024-07-16T00:00:00.000Z",
+    twitterUrl: "https://twitter.com/mesonfi",
+    ownerAddress: "0xD1Ffeuo47briwgyfwi7b4749gbwig979bh6Caa",
+    fundingSources: "None",
+    teamSize: 1,
   },
   {
-    id: 2,
-    title: "How to use search engine optimization to drive sales",
-    href: "#",
+    network: "Ethereum",
+    name: "MesonFi",
+    openSourceObserverName: "MesonFi",
+    website: "https://meson.fi/",
+    projectLogoUrl:
+      "https://docs.meson.fi/~gitbook/image?url=https%3A%2F%2F1966107664-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FWJ9Xuoax4XwtI4AskpIb%252Ficon%252FL1gVbDPzMVPwHEi51o4W%252Flogo192.png%3Falt%3Dmedia%26token%3D4f3d4d82-dd19-4ddb-b9ce-eaa23cfdb32f&width=32&dpr=1&quality=100&sign=a1a21306&sv=1",
+    projectCoverUrl:
+      "https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     description:
-      "Optio cum necessitatibus in. Quaerat esse labore sit modi dolores saepe. Sint facilis dolores aut. Veniam accusamus vel. Repellendus natus quae ducimus eligendi. Id et quia aut.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80",
-    date: "Mar 10, 2020",
-    datetime: "2020-03-10",
-    category: { title: "SEO", href: "#" },
-    author: {
-      name: "Brenna Goyette",
-      role: "Co-Founder / CEO",
-      href: "#",
-      imageUrl:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    },
+      "MesonFi is a decentralized finance platform that allows users to earn interest on their crypto assets.",
+    createdDate: "2024-07-16T00:00:00.000Z",
+    twitterUrl: "https://twitter.com/mesonfi",
+    ownerAddress: "0xD1Ffeuo47briwgyfwi7b4749gbwig979bh6Caa",
+    fundingSources: "None",
+    teamSize: 1,
   },
 ];
 
@@ -220,15 +225,7 @@ export default function Round() {
         <h1 className="text-2xl">Explore Projects</h1>
         <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {projects.map((project, index) => (
-            <Card
-              key={index}
-              name={project.title}
-              description={project.description}
-              profileImageUrl={project.imageUrl}
-              coverImageUrl={project.imageUrl}
-              totalRaised="1000 USDC"
-              contributors={10}
-            />
+            <Card key={index} {...project} />
           ))}
         </div>
       </div>
@@ -236,65 +233,44 @@ export default function Round() {
   );
 }
 
-const Card = ({
+const Card: React.FC<Project> = ({
   name,
+  projectLogoUrl,
+  projectCoverUrl,
   description,
-  profileImageUrl,
-  coverImageUrl,
-  totalRaised,
-  contributors,
-}: {
-  name: string | undefined;
-  description: string | undefined;
-  profileImageUrl: string | undefined;
-  coverImageUrl: string | undefined;
-  totalRaised: string | undefined;
-  contributors: number | undefined;
-}) => (
-  <div className="rounded-3xl bg-white shadow-lg overflow-hidden a > { } w-full h-[370px] hover:opacity-90 transition relative hover:shadow-none">
-    <Link
-      target="_blank"
-      href={`/projects/${name}`}
-      data-track-event="project-card"
-    >
-      <div className="w-full relative">
-        <div>
-          <img
-            className="bg-black h-[120px] w-full object-cover rounded-t"
-            src={coverImageUrl}
-            alt="Project Banner"
-          />
-        </div>
-      </div>
-      <div className="p-4 space-y-4 relative">
-        <img
-          className="object-cover rounded-full border-solid border-2 border-white absolute -top-[24px] "
-          src={profileImageUrl}
-          alt="Project Banner"
-          style={{ height: 48, width: 48 }}
-        />
-        <div className="truncate mt-4">{name}</div>
-        <div className="text-sm md:text-base text-ellipsis line-clamp-4 text-grey-400 leading-relaxed min-h-[96px]">
-          <div className="text-sm line-clamp-4">{description}</div>
-        </div>
-      </div>
-    </Link>
-    <div className="absolute bottom-0 inset-x-0 h-20 w-full bg-white">
-      <div className="p-4 space-y-4 px-2 text-xs">
-        <div className="border-t pt-1 flex items-center justify-between ">
-          <div className="px-2">
-            <p className="text-sm">{totalRaised}</p>
-            <p className="text-sm font-mono">
-              total raised by {contributors} contributors
-            </p>
-          </div>
+}) => {
+  const { setPopupData, togglePopupVisibility } = usePopup();
+
+  const handleClick = () => {
+    setPopupData(name || "");
+    togglePopupVisibility(true); // Show the popup
+  };
+
+  return (
+    <div className="rounded-3xl bg-white shadow-lg overflow-hidden w-full hover:opacity-90 transition hover:shadow-none hover:cursor-pointer">
+      <div onClick={handleClick}>
+        <div className="w-full relative">
           <div>
-            <div className="cursor-pointer" data-testid="add-to-cart">
-              <CurrencyDollarIcon className="w-10 h-10 text-gray-900" />
-            </div>
+            <img
+              className="bg-black h-[120px] w-full object-cover rounded-t"
+              src={projectCoverUrl}
+              alt="Project Banner"
+            />
+          </div>
+        </div>
+        <div className="p-4 space-y-4 relative">
+          <img
+            className="object-cover rounded-full border-solid border-2 border-white absolute -top-[24px]"
+            src={projectLogoUrl}
+            alt="Profile"
+            style={{ height: 48, width: 48 }}
+          />
+          <div className="truncate mt-4">{name}</div>
+          <div className="text-sm md:text-base text-ellipsis line-clamp-4 text-grey-400 leading-relaxed min-h-[96px]">
+            <div className="text-sm line-clamp-4">{description}</div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
