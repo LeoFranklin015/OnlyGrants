@@ -3,15 +3,15 @@
 pragma solidity >=0.8.19 <0.9.0;
 
 // import "@fhenixprotocol/contracts/FHE.sol";
-import "./FHE.sol";
-import "@fhenixprotocol/contracts/access/Permission.sol";
+import "@fhenixprotocol/contracts/FHE.sol";
+import "@fhenixprotocol/contracts/access/Permissioned.sol";
 
 contract Poll is Permissioned {
   uint8 internal constant MAX_OPTIONS = 4;
 
   // Pre-compute these to prevent unnecessary gas usage for the users
-  // euint16 internal _zero = FHE.asEuint16(0);
-  // euint16 internal _one = FHE.asEuint16(1);
+  euint16 internal _zero = FHE.asEuint16(0);
+  euint16 internal _one = FHE.asEuint16(1);
   euint32 internal _u32Sixteen = FHE.asEuint32(16);
   euint8[MAX_OPTIONS] internal _encOptions = [
     FHE.asEuint8(0),
@@ -29,6 +29,8 @@ contract Poll is Permissioned {
   euint16 internal _winningTally;
 
   mapping(address => euint8) internal _votes;
+  mapping(address => euint64) internal _voteAmounts;
+  address public owner;
 
   constructor(
     string memory _proposal,
@@ -36,20 +38,23 @@ contract Poll is Permissioned {
     uint votingPeriod
   ) {
     require(options.length <= MAX_OPTIONS, "too many options!");
-
+    owner = msg.sender;
     proposal = _proposal;
     options = _options;
     voteEndTime = block.timestamp + votingPeriod;
   }
 
-  function vote(inEuint8 memory voteBytes) public {
+  function vote(euint8 voteBytes, euint64 amount) public {
     require(block.timestamp < voteEndTime, "voting is over!");
     require(!FHE.isInitialized(_votes[msg.sender]), "already voted!");
-    euint8 encryptedVote = FHE.asEuint8(voteBytes); // Cast bytes into an encrypted type
+
+    euint8 encryptedVote = voteBytes; // Cast bytes into an encrypted type
+    euint64 encryptedAmount = amount;
     _requireValid(encryptedVote);
 
     _votes[msg.sender] = encryptedVote;
-    _addToTally(encryptedVote /* , _one */);
+    _voteAmounts[msg.sender] = encryptedAmount;
+    _addToTally(encryptedVote, FHE.asEuint16(encryptedAmount));
   }
 
   function finalize() public {
@@ -68,24 +73,26 @@ contract Poll is Permissioned {
     }
   }
 
-  function addOptions(string[] memory _options) public onlyOwner {
-    require(
-      options.length + _options.length <= MAX_OPTIONS,
-      "too many options!"
-    );
-    for (uint8 i = 0; i < _options.length; i++) {
-      options.push(_options[i]);
-    }
+  function addOption(string memory _option) public {
+    require(options.length + 1 <= MAX_OPTIONS, "too many options!");
+    options.push(_option);
   }
 
   function winning() public view returns (uint8, uint16) {
-    require(voteEndTime < block.timestamp, "voting is still in progress!");
+    // require(voteEndTime < block.timestamp, "voting is still in progress!");
     return (FHE.decrypt(_winningOption), FHE.decrypt(_winningTally));
   }
 
+  // function getSealedOutput(
+  //   Permission memory signature
+  // ) public view returns (string memory) {
+  //   // Seal the output for a specific publicKey
+  //   return FHE.sealoutput(_output, signature.publicKey);
+  // }
+
   function getUserVote(
     Permission memory signature
-  ) public view onlySignedPublicKey(signature) returns (bytes memory) {
+  ) public view returns (string memory) {
     require(FHE.isInitialized(_votes[msg.sender]), "no vote found!");
     return FHE.sealoutput(_votes[msg.sender], signature.publicKey);
   }
@@ -97,16 +104,16 @@ contract Poll is Permissioned {
     FHE.req(isValid);
   }
 
-  function _addToTally(euint8 option /* , euint16 amount */) internal {
+  function _addToTally(euint8 option, euint16 amount) internal {
     // We don't want to leak the user's vote, so we have to change the tally of every option.
     // So for example, if the user voted for option 1:
     // tally[0] = tally[0] + enc(0)
     // tally[1] = tally[1] + enc(1)
     // etc ..
     for (uint8 i = 0; i < options.length; i++) {
-      // euint16 amountOrZero = FHE.select(option.eq(_encOptions[i]), _one, _zero);
-      ebool amountOrZero = option.eq(_encOptions[i]); // `eq()` result is known to be enc(0) or enc(1)
-      _tally[i] = _tally[i] + amountOrZero.toU16(); // `eq()` result is known to be enc(0) or enc(1)
+      euint16 amountOrZero = FHE.select(option.eq(_encOptions[i]), _one, _zero);
+
+      _tally[i] = _tally[i] + amountOrZero; // `eq()` result is known to be enc(0) or enc(1)
     }
   }
 }

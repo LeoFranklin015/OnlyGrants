@@ -13,20 +13,20 @@ const func: DeployFunction = async function () {
     if (hre.network.name === "localfhenix") {
       await fhenixjs.getFunds(signer.address);
     } else {
-        console.log(
-            chalk.red("Please fund your account with testnet FHE from https://faucet.fhenix.zone"));
-        return;
+      console.log(
+        chalk.red("Please fund your account with testnet FHE from https://faucet.fhenix.zone"));
+      return;
     }
   }
 
-  const counter = await deploy("Counter", {
+  const onlyGrantsProtocol = await deploy("OnlyGrantsProtocol", {
     from: signer.address,
     args: [],
     log: true,
     skipIfAlreadyDeployed: false,
   });
 
-  console.log(`Counter contract: `, counter.address);
+  console.log(`OnlyGrantsProtocol contract: `, onlyGrantsProtocol.address);
 };
 
 export default func;

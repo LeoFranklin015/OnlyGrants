@@ -14,14 +14,15 @@ import { resolve } from "path";
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) });
 
-const TESTNET_CHAIN_ID = 8008135;
-const TESTNET_RPC_URL = "https://api.helium.fhenix.zone";
+const TESTNET_CHAIN_ID = 412346;
+const TESTNET_RPC_URL = "http://127.0.0.1:42069";
 
-const testnetConfig = {
+const testnetConfig: any = {
   chainId: TESTNET_CHAIN_ID,
   url: TESTNET_RPC_URL,
-  accounts: [process.env.WALLET],
-}
+  accounts: process.env.WALLET ? [process.env.WALLET] : [],
+  gasLimit: 8000000, // Manual gas limit
+};
 
 // Select either private keys or mnemonic from .env file or environment variables
 const keys = process.env.KEY;
@@ -30,21 +31,20 @@ if (!keys) {
   if (!mnemonic) {
     throw new Error("No mnemonic or private key provided, please set MNEMONIC or KEY in your .env file");
   }
-  testnetConfig['accounts'] = {
-    count: 10,
+  testnetConfig.accounts = {
     mnemonic,
     path: "m/44'/60'/0'/0",
-  }
+    count: 10,
+  };
 } else {
-  testnetConfig['accounts'] = [keys];
+  testnetConfig.accounts = [keys];
 }
-
 
 const config: HardhatUserConfig = {
   solidity: "0.8.25",
-  defaultNetwork: "hardhat",
+  defaultNetwork: "localfhenix",
   networks: {
-    testnet: testnetConfig,
+    localfhenix: testnetConfig,
   },
   typechain: {
     outDir: "types",

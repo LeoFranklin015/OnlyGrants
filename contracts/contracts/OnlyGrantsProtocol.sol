@@ -1,12 +1,11 @@
+pragma solidity >=0.8.19 <0.9.0;
+
 import {Poll} from "./Poll.sol";
-// import "@fhenixprotocol/contracts/FHE.sol";
-import "./FHE.sol";
+import {FHE, euint256, euint64, inEuint64, euint8} from "@fhenixprotocol/contracts/FHE.sol";
+import "@openzeppelin/contracts/utils/math/Math.sol";
 
 contract OnlyGrantsProtocol {
-  struct Profile {
-    address owner;
-    string metadata;
-  }
+  uint256 nextRoundId;
 
   struct Round {
     uint256 id;
@@ -16,7 +15,6 @@ contract OnlyGrantsProtocol {
     bool isActive;
     mapping(uint256 => Project) projects;
     uint256[] projectIds;
-    uint256 totalDonations;
     uint256 nextProjectId;
     Poll poll;
   }
@@ -31,11 +29,9 @@ contract OnlyGrantsProtocol {
     address[] donors;
   }
 
-  mapping(address => Profile) public profiles;
   mapping(uint256 => Round) public rounds;
-  mapping(address => uint256) public userVoiceCreditBalance;
+  mapping(address => uint256) public balances;
 
-  event ProfileCreated(address indexed owner);
   event RoundCreated(
     uint256 indexed roundId,
     address indexed profileOwner,
@@ -45,53 +41,43 @@ contract OnlyGrantsProtocol {
     uint256 indexed roundId,
     uint256 indexed projectId,
     address indexed donor,
-    uint256 amount
+    euint64 amount
   );
   event FundsDistributed(uint256 indexed roundId);
+
   event RoundCancelled(uint256 indexed roundId);
   event ProjectApplied(
     uint256 indexed roundId,
     uint256 indexed projectId,
     address indexed projectOwner
   );
-
-  function createProfile(string calldata metadata) external {
-    require(profiles[msg.sender].owner == address(0), "Profile already exists");
-    profiles[msg.sender].owner = msg.sender;
-    profiles[msg.sender].metadata = metadata;
-    emit ProfileCreated(msg.sender);
-  }
+  event BalanceToppedUp(address indexed user, uint256 amount);
 
   function createRound(
-    uint256 matchingAmount,
-    string calldata metadata,
-    string memory pollProposal,
-    string[] memory pollOptions,
-    uint256 votingPeriod
+    uint256 ma,
+    string calldata m,
+    uint256 vp
   ) external payable {
-    require(profiles[msg.sender].owner == msg.sender, "Not profile owner");
-    require(matchingAmount > 0, "Matching amount must be greater than 0");
-    require(
-      matchingAmount == msg.value,
-      "Matching amount must be equal to msg.value"
-    );
+    // require(ma > 0 && ma == msg.value, "Invalid matching amount");
 
-    uint256 roundId = nextRoundId++;
-    Round storage round = rounds[roundId];
-    round.id = roundId;
-    round.profileOwner = msg.sender;
-    round.matchingAmount = matchingAmount;
-    round.metadata = metadata;
-    round.isActive = true;
+    uint256 rId = nextRoundId++;
+    Round storage r = rounds[rId];
+    r.id = rId;
+    r.profileOwner = msg.sender;
+    r.matchingAmount = ma;
+    r.metadata = m;
+    r.isActive = true;
 
-    // Create a new Poll for this round
-    round.poll = new Poll(pollProposal, pollOptions, votingPeriod);
+    r.poll = new Poll(m, new string[](1), vp);
 
-    emit RoundCreated(roundId, msg.sender, matchingAmount);
+    emit RoundCreated(rId, msg.sender, ma);
   }
 
-  function buyVoiceCredits(uint256 amount) external payable {
-    userVoiceCreditBalance[msg.sender] += amount;
+  function topUpBalance() external payable {
+    // require(msg.value > 0, "Amount must be greater than 0");
+    balances[msg.sender] += msg.value;
+    payable(msg.sender).transfer(msg.value);
+    emit BalanceToppedUp(msg.sender, msg.value);
   }
 
   function editRoundMetadata(
@@ -99,12 +85,8 @@ contract OnlyGrantsProtocol {
     string calldata newMetadata
   ) external {
     Round storage round = rounds[roundId];
-    require(
-      round.profileOwner == msg.sender ||
-        round.members[msg.sender] ||
-        profiles[round.profileOwner].members[msg.sender],
-      "Not authorized"
-    );
+    // require(round.profileOwner == msg.sender, "Not authorized");
+
     round.metadata = newMetadata;
   }
 
@@ -113,19 +95,19 @@ contract OnlyGrantsProtocol {
   /// @param metadata The project's metadata
   function applyForRound(uint256 roundId, string calldata metadata) external {
     Round storage round = rounds[roundId];
-    require(round.isActive, "Round is not active");
+    // require(round.isActive, "Round is not active");
 
     uint256 projectId = round.nextProjectId++;
     Project storage project = round.projects[projectId];
-    require(project.owner == address(0), "Project ID already exists");
+    // require(project.owner == address(0), "Project ID already exists");
 
     project.id = projectId;
     project.owner = msg.sender;
     project.metadata = metadata;
-    project.totalDonations = 0;
+    project.totalDonations = (0);
     round.projectIds.push(projectId);
 
-    round.poll.addOptions(roundId, projectId);
+    round.poll.addOption(string(abi.encodePacked(projectId)));
 
     emit ProjectApplied(roundId, projectId, msg.sender);
   }
@@ -137,70 +119,66 @@ contract OnlyGrantsProtocol {
   function donate(
     uint256 roundId,
     uint256 projectId,
-    uint256 amount
-  ) external nonReentrant {
+    inEuint64 memory amount
+  ) external {
     Round storage round = rounds[roundId];
-    require(round.isActive, "Round is not active");
-    require(amount > 0, "Donation amount must be greater than 0");
+    euint64 encryptedAmount = FHE.asEuint64(amount);
+    uint256 decryptedAmount = FHE.decrypt(encryptedAmount);
+    // require(round.isActive, "Round is not active");
+
+    // require(balances[msg.sender] >= decryptedAmount, "Insufficient balance");
+
     Project storage project = round.projects[projectId];
-    require(project.owner != address(0), "Project not found in round");
-    require(
-      userVoiceCreditBalance[msg.sender] >= amount,
-      "Insufficient voice credits"
-    );
+    // require(project.owner != address(0), "Project not found in round");
 
-    if (project.donations[msg.sender] == 0) {
-      project.donors.push(msg.sender);
-    }
-    project.donations[msg.sender] += amount;
-    project.totalDonations += amount;
-    round.totalDonations += amount;
-    userVoiceCreditBalance[msg.sender] -= amount;
+    uint256 newTotalDonations = project.totalDonations + decryptedAmount;
 
-    emit DonationMade(roundId, projectId, msg.sender, amount);
+    project.donations[msg.sender] = decryptedAmount;
+
+    project.totalDonations = newTotalDonations;
+
+    uint8 vote = uint8(projectId);
+    euint8 encryptedVote = FHE.asEuint8(vote);
+    round.poll.vote(encryptedVote, encryptedAmount);
+
+    balances[msg.sender] -= decryptedAmount;
+
+    emit DonationMade(roundId, projectId, msg.sender, encryptedAmount);
   }
 
   /// @notice Distributes funds for a completed round using quadratic funding
-  /// @param roundId The ID of the round to distribute funds for
-  function distributeFunds(uint256 roundId) external nonReentrant {
-    Round storage round = rounds[roundId];
-    require(round.profileOwner == msg.sender, "Not round owner");
-    require(round.isActive, "Round is not active");
-    require(round.totalDonations > 0, "No donations to distribute");
+  /// @param rId The ID of the round to distribute funds for
+  function distributeFunds(uint256 rId) external {
+    Round storage r = rounds[rId];
+    // require(
+    //   r.profileOwner == msg.sender && r.isActive,
+    //   "Not authorized or inactive"
+    // );
 
-    uint256 totalMatch = round.matchingAmount;
-    uint256 totalSqrtDonations = 0;
+    uint256 tMatch = r.matchingAmount;
+    uint256 tSqrtDonations = 0;
 
-    // Calculate total square root of donations for all projects
-    for (uint256 i = 0; i < round.projectIds.length; i++) {
-      Project storage project = round.projects[round.projectIds[i]];
-      totalSqrtDonations += Math.sqrt(project.totalDonations);
+    for (uint256 i = 0; i < r.projectIds.length; i++) {
+      Project storage p = r.projects[r.projectIds[i]];
+      tSqrtDonations += Math.sqrt(p.totalDonations);
     }
 
-    // Distribute funds using quadratic funding formula
-    for (uint256 i = 0; i < round.projectIds.length; i++) {
-      Project storage project = round.projects[round.projectIds[i]];
-      uint256 projectShare = (Math.sqrt(project.totalDonations) * totalMatch) /
-        totalSqrtDonations;
-      uint256 totalProjectFunds = project.totalDonations + projectShare;
-      payable(project.owner).transfer(totalProjectFunds);
+    for (uint256 i = 0; i < r.projectIds.length; i++) {
+      Project storage p = r.projects[r.projectIds[i]];
+      uint256 pShare = (Math.sqrt(p.totalDonations) * tMatch) / tSqrtDonations;
+      payable(p.owner).transfer(p.totalDonations + pShare);
     }
 
-    round.isActive = false;
-    emit FundsDistributed(roundId);
-  }
-
-  function editProfileMetadata(string calldata newMetadata) external {
-    require(profiles[msg.sender].owner == msg.sender, "Not profile owner");
-    profiles[msg.sender].metadata = newMetadata;
+    r.isActive = false;
+    emit FundsDistributed(rId);
   }
 
   /// @notice Allows the round owner to cancel an active round and refund donations
   /// @param roundId The ID of the round to cancel
-  function cancelRound(uint256 roundId) external nonReentrant {
+  function cancelRound(uint256 roundId) external {
     Round storage round = rounds[roundId];
-    require(round.profileOwner == msg.sender, "Not round owner");
-    require(round.isActive, "Round is not active");
+    // require(round.profileOwner == msg.sender, "Not round owner");
+    // require(round.isActive, "Round is not active");
 
     // Refund donations to donors
     for (uint256 i = 0; i < round.projectIds.length; i++) {
@@ -219,20 +197,10 @@ contract OnlyGrantsProtocol {
     emit RoundCancelled(roundId);
   }
 
-  // New function to vote in a round's poll
-  function voteInRoundPoll(
-    uint256 roundId,
-    inEuint8 memory voteBytes
-  ) external {
-    Round storage round = rounds[roundId];
-    require(round.isActive, "Round is not active");
-    round.poll.vote(voteBytes);
-  }
-
   // New function to finalize a round's poll
   function finalizeRoundPoll(uint256 roundId) external {
     Round storage round = rounds[roundId];
-    require(round.isActive, "Round is not active");
+    // require(round.isActive, "Round is not active");
     round.poll.finalize();
   }
 
