@@ -4,7 +4,7 @@ import axios from "axios";
 export default async function handler(req, res) {
   // Get the proof from the request body
   const { proof } = req.body;
-  const app_id = "app_e2e1326a0f8ee7f7af2a27451fd9175d";
+  const app_id = "app_staging_e5b0118ebb3d7997239ffc3c131eb863";
   const action = "verify-human";
 
   try {

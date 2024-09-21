@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from "react";
 import { IDKitWidget, VerificationLevel } from "@worldcoin/idkit";
 
@@ -18,8 +20,10 @@ export default function WorldCoinConnect({
         nullifier_hash: worldcoinSignature.message,
       });
       console.log("Loaded worldcoin");
+      localStorage.setItem("worldcoinSignature", JSON.stringify(worldcoinSignature));
     }
-  }, []);
+
+  }, [worldcoinVerified]);
 
   const handleVerify = async (proof: any) => {
     const response = await fetch("/api/verify", {
@@ -49,7 +53,7 @@ export default function WorldCoinConnect({
     <>
       {!worldcoinId ? (
         <IDKitWidget
-          app_id="app_e2e1326a0f8ee7f7af2a27451fd9175d" // obtained from the Developer Portal
+          app_id="app_staging_e5b0118ebb3d7997239ffc3c131eb863" // obtained from the Developer Portal
           action="verify-human" // this is your action id from the Developer Portal
           onSuccess={onSuccess} // callback when the modal is closed
           handleVerify={handleVerify} // optional callback when the proof is received
@@ -60,7 +64,7 @@ export default function WorldCoinConnect({
               className="font-bold text-lg pt-1 text-zinc-600 cursor-pointer"
               onClick={open}
             >
-              Log in with Worldcoin
+              Get started
             </div>
           )}
         </IDKitWidget>

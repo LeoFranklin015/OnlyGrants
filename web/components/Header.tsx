@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
@@ -65,13 +67,14 @@ const Header: React.FC = () => {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        {!worldcoinVerified ? (
+        {worldcoinVerified ? (
           <div className=" justify-center items-center">
             <WorldCoinConnect onAction={setWorldcoinVerified} />
           </div>
-        ) : <div className="hidden lg:flex lg:gap-x-12">
+        ) : <div className="hidden items-center lg:flex lg:gap-x-12">
           {navigation.map((item) => (
             <Link
+
               key={item.name}
               href={item.href}
               className="text-sm font-semibold leading-6 text-gray-900"
@@ -80,10 +83,10 @@ const Header: React.FC = () => {
             </Link>
           ))}
           <Link
-            href="/create-project"
+            href="/create-round"
             className="inline-flex gap-x-2 rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
-            Create Project
+            Create Round
             <PlusIcon aria-hidden="true" className="-mr-0.5 h-5 w-5" />
           </Link>
         </div>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import DatePicker from "react-datepicker";
 import {
@@ -13,7 +13,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useWriteContract } from "wagmi";
 import { parseEther } from "viem";
 import contract from "../utilities/contract.json";
-
+import { toast } from 'react-toastify';
 
 import AppLayout from "@/layouts/AppLayout";
 
@@ -29,15 +29,13 @@ const chains = [
 
 export default function CreateRound() {
   const [selectedChain, setSelectedChain] = useState(chains[3]);
-  const [createRoundLoading, setCreateRoundLoading] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const { writeContract } = useWriteContract();
+  const { writeContract, isPending: isLoading, isSuccess, isError, error } = useWriteContract();
 
   const handleCreateRound = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setCreateRoundLoading(true);
 
     // Get form data
     const formData = new FormData(e.currentTarget);
@@ -50,28 +48,37 @@ export default function CreateRound() {
       description: formData.get('description') as string,
     };
 
+    console.log(roundData);
+
     try {
-      const result = await writeContract({
+      writeContract({
         address: contract.address as `0x${string}`, // Replace with the actual contract address
         abi: contract.abi,
         functionName: "createRound",
         args: [
-          parseEther(roundData.matchingPool), // Convert to wei
+          roundData.matchingPool,
           roundData.description,
           BigInt(7 * 24 * 60 * 60), // Voting period in seconds (e.g., 7 days)
         ],
-        value: parseEther(roundData.matchingPool), // Send the matching pool amount as value
+        value: roundData.matchingPool, // Send the matching pool amount as value
       });
-
-      console.log("Round created:", result);
-      // Handle success (e.g., show a success message, redirect to the round page)
     } catch (error) {
       console.error("Error creating round:", error);
-      // Handle error (e.g., show an error message to the user)
-    } finally {
-      setCreateRoundLoading(false);
     }
   };
+
+  // Add useEffect to handle contract write states
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Round created successfully!");
+      alert("Round created successfully!");
+      // Optionally, reset form or redirect user
+    }
+    if (isError) {
+      toast.error(`Failed to create round: ${error?.message || "Unknown error"}`);
+      alert(`Failed to create round: ${error?.message || "Unknown error"}`);
+    }
+  }, [isSuccess, isError, error]);
 
   return (
     <AppLayout title="Projects">
@@ -253,14 +260,16 @@ export default function CreateRound() {
                 <button
                   type="button"
                   className="text-sm font-semibold leading-6 text-gray-900"
+                  disabled={isLoading}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-x-2 rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                  className="inline-flex items-center gap-x-2 rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isLoading}
                 >
-                  {createRoundLoading ? (
+                  {isLoading ? (
                     <>
                       <span>Creating Round</span>
                       <RotatingLines
