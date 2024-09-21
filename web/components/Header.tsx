@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-// import { NearContext } from "@/utilities/context";
+import { NearContext } from "@/utilities/context";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -16,25 +16,23 @@ const Header: React.FC = () => {
   // const { openConnectModal } = useConnectModal();
 
   // const { signedAccountId, wallet } = useContext(NearContext);
-  // const [action, setAction] = useState(() => {});
-  // const [label, setLabel] = useState("Loading...");
+  const [action, setAction] = useState(() => {});
+  const [label, setLabel] = useState("Loading...");
 
-  useEffect(() => {
-    // if (!wallet) return;
+  // useEffect(() => {
+  //   if (!wallet) return;
 
-    // if (signedAccountId) {
-    //   setAction(() => wallet.signOut);
-    //   setLabel(`Logout ${signedAccountId}`);
-    // } else {
-    //   setAction(() => wallet.signIn);
-    //   setLabel("Login");
-    // }
-  }, [
-
-  ]);
+  //   if (signedAccountId) {
+  //     setAction(() => wallet.signOut);
+  //     setLabel(`Logout ${signedAccountId}`);
+  //   } else {
+  //     setAction(() => wallet.signIn);
+  //     setLabel("Login");
+  //   }
+  // }, [signedAccountId, wallet]);
 
   return (
-    <header className="fixed w-full bg-white/70 top-0 z-50">
+    <header className="fixed w-full bg-white/70 top-0 z-10">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
@@ -141,20 +139,20 @@ const Header: React.FC = () => {
           {/* Rainbowkit custom connect button end */}
 
           {/* Near Login Button start */}
-          <button
-
+          {/* <button
+            onClick={action}
             type="button"
             className="rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
-            Login
-          </button>
+            {label}
+          </button> */}
           {/* Near Login Button end */}
 
           <Link
-            href="/create-round"
+            href="/create-project"
             className="inline-flex gap-x-2 rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
-            Create Round
+            Create Project
             <PlusIcon aria-hidden="true" className="-mr-0.5 h-5 w-5" />
           </Link>
         </div>
