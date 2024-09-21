@@ -4,6 +4,7 @@
 import AppLayout from "@/layouts/AppLayout";
 import { NearContext } from "@/utilities/context";
 import { useContext } from "react";
+import Nouns from "@/public/homePage.png";
 
 const stats = [
   { label: "Transactions every 24 hours", value: "44 million" },
@@ -126,7 +127,7 @@ export default function Home() {
                 <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-7xl">
                   From Individual Actions <br /> to Collective Impact
                 </h1>
-                <p>Your NEAR account: {signedAccountId}</p>
+                {/* <p>Your NEAR account: {signedAccountId}</p> */}
                 <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
                   Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in
                   quis cupidatat mollit aute velit. Et labore commodo nulla
@@ -137,7 +138,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
-                <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
+                {/* <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                   <div className="relative">
                     <img
                       alt=""
@@ -182,6 +183,9 @@ export default function Home() {
                     />
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                   </div>
+                </div> */}
+                <div>
+                  <img src="http://localhost:3000/homePage.png" alt="" />
                 </div>
               </div>
             </div>
