@@ -1,90 +1,55 @@
-import "@nomicfoundation/hardhat-toolbox"
-import "hardhat-artifactor"
+// Plugins
+// Tasks
+import "./tasks";
+import "@nomicfoundation/hardhat-toolbox";
+import { config as dotenvConfig } from "dotenv";
+import "fhenix-hardhat-docker";
+import "fhenix-hardhat-plugin";
+import "fhenix-hardhat-network";
+import "hardhat-deploy";
+import { HardhatUserConfig } from "hardhat/config";
+import { resolve } from "path";
 
-import type { HardhatUserConfig } from "hardhat/config"
+// DOTENV_CONFIG_PATH is used to specify the path to the .env file for example in the CI
+const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";
+dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) });
 
-import { task, subtask } from "hardhat/config"
+const TESTNET_CHAIN_ID = 8008135;
+const TESTNET_RPC_URL = "https://api.helium.fhenix.zone";
 
-import path from "path"
-import fs from "fs"
-
-import dotenv from "dotenv"
-dotenv.config()
-
-/**
- * Allow to copy a directory from source to target
- * @param source - the source directory
- * @param target - the target directory
- */
-function copyDirectory(source: string, target: string): void {
-    if (!fs.existsSync(target)) {
-        fs.mkdirSync(target, { recursive: true })
-    }
-
-    if (!fs.existsSync(source)) {
-        return
-    }
-
-    const files = fs.readdirSync(source)
-
-    files.forEach((file: string) => {
-        const sourcePath = path.join(source, file)
-        const targetPath = path.join(target, file)
-
-        if (fs.lstatSync(sourcePath).isDirectory()) {
-            copyDirectory(sourcePath, targetPath)
-        } else {
-            fs.copyFileSync(sourcePath, targetPath)
-        }
-    })
+const testnetConfig = {
+  chainId: TESTNET_CHAIN_ID,
+  url: TESTNET_RPC_URL,
+  accounts: [process.env.WALLET],
 }
 
-// Define a subtask to copy artifacts
-subtask("copy-maci-artifacts", async (_, { config }) => {
-    const sourceDir = path.resolve(__dirname, "node_modules/maci-contracts/build/artifacts/contracts/")
-    const destDir = path.resolve(config.paths.artifacts, "maci-contracts", "contracts")
+// Select either private keys or mnemonic from .env file or environment variables
+const keys = process.env.KEY;
+if (!keys) {
+  let mnemonic = process.env.MNEMONIC;
+  if (!mnemonic) {
+    throw new Error("No mnemonic or private key provided, please set MNEMONIC or KEY in your .env file");
+  }
+  testnetConfig['accounts'] = {
+    count: 10,
+    mnemonic,
+    path: "m/44'/60'/0'/0",
+  }
+} else {
+  testnetConfig['accounts'] = [keys];
+}
 
-    copyDirectory(sourceDir, destDir)
-})
-
-// Override the existing compile task
-task("compile", async (args, hre, runSuper) => {
-    // Before compilation move over artifacts
-    await hre.run("copy-maci-artifacts")
-
-    // Run the original compile task
-    await runSuper(args)
-
-    // After compilation, run the subtask to copy MACI artifacts
-    await hre.run("copy-maci-artifacts")
-})
 
 const config: HardhatUserConfig = {
-    solidity: {
-        version: "0.8.20",
-        settings: {
-            optimizer: {
-                enabled: true,
-                runs: 200,
-            },
-        },
-    },
-    gasReporter: {
-        currency: "USD",
-        enabled: true,
-    },
-    paths: {
-        tests: "./test",
-        artifacts: "./artifacts",
-    },
-    defaultNetwork: "localhost",
-    networks: {
-        localhost: {
-            url: process.env.RPC_URL,
-            accounts: [process.env.PRIVATE_KEY!],
-            blockGasLimit: 30000000,
-        },
-    },
-}
+  solidity: "0.8.25",
+  defaultNetwork: "hardhat",
+  networks: {
+    testnet: testnetConfig,
+  },
+  typechain: {
+    outDir: "types",
+    target: "ethers-v6",
+  },
+};
 
-export default config
+export default config;
