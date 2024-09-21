@@ -128,7 +128,7 @@ export default function Rounds() {
       >
         Function Call
       </button>
-      <WorldCoinConnect />
+      {/* <WorldCoinConnect /> */}
     </AppLayout>
   );
 }

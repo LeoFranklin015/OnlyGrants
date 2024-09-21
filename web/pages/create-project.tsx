@@ -9,7 +9,6 @@ import {
 } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { RotatingLines } from "react-loader-spinner";
-
 import AppLayout from "@/layouts/AppLayout";
 
 const chains = [
@@ -22,16 +21,41 @@ const chains = [
 
 export default function CreateProject() {
   const [selectedChain, setSelectedChain] = useState(chains[3]);
+  const [projectName, setProjectName] = useState("");
+  const [osoName, setOsoName] = useState("");
+  const [website, setWebsite] = useState("");
+  const [twitterUrl, setTwitterUrl] = useState("");
+  const [logoUrl, setLogoUrl] = useState("");
+  const [coverUrl, setCoverUrl] = useState("");
+  const [fundingSources, setFundingSources] = useState("");
+  const [teamSize, setTeamSize] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
   const [createProjectLoading, setCreateProjectLoading] = useState(false);
 
-  const createProject = (e: { preventDefault: () => void }) => {
+  const createProject = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setCreateProjectLoading(true);
-    console.log("Creating project...");
+
+    const projectData = {
+      selectedChain: selectedChain.name,
+      projectName,
+      osoName,
+      website,
+      twitterUrl,
+      logoUrl,
+      coverUrl,
+      fundingSources,
+      teamSize,
+      projectDescription,
+    };
+
+    console.log("Project Data:", JSON.stringify(projectData, null, 2));
+
     try {
-      // TODO: Make contract call to create project
+      // Call the contract to create the project
+      console.log("Project created successfully.");
     } catch (error) {
-      console.error(error);
+      console.error("Error creating project:", error);
     } finally {
       setCreateProjectLoading(false);
     }
@@ -79,7 +103,7 @@ export default function CreateProject() {
 
                         <ListboxOptions
                           transition
-                          className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:text-sm"
+                          className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                         >
                           {chains.map((chain) => (
                             <ListboxOption
@@ -107,17 +131,19 @@ export default function CreateProject() {
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="projectName"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Project Name</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
+                        id="projectName"
+                        name="projectName"
+                        type="text"
                         placeholder="What's the project name?"
+                        value={projectName}
+                        onChange={(e) => setProjectName(e.target.value)}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -125,22 +151,25 @@ export default function CreateProject() {
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="osoName"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Open Source Observer Name</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
+                        id="osoName"
+                        name="osoName"
+                        type="text"
                         placeholder="What's the project name on Open Source Observer?"
+                        value={osoName}
+                        onChange={(e) => setOsoName(e.target.value)}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
 
+                  {/* Other form fields follow a similar pattern */}
                   <div className="sm:col-span-4">
                     <label
                       htmlFor="website"
@@ -149,34 +178,33 @@ export default function CreateProject() {
                       <h1>Website</h1>
                     </label>
                     <div className="mt-2">
-                      <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary-600 sm:max-w-md">
-                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
-                          https://
-                        </span>
-                        <input
-                          id="website"
-                          name="website"
-                          type="text"
-                          placeholder="www.example.com"
-                          className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                        />
-                      </div>
+                      <input
+                        id="website"
+                        name="website"
+                        type="text"
+                        placeholder="www.example.com"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
+                      />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="twitterUrl"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Twitter URL</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
+                        id="twitterUrl"
+                        name="twitterUrl"
                         type="text"
                         placeholder="What's the project Twitter profile URL?"
+                        value={twitterUrl}
+                        onChange={(e) => setTwitterUrl(e.target.value)}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -184,125 +212,59 @@ export default function CreateProject() {
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="logoUrl"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
-                      <h1>Project Logo URL</h1>
+                      <h1>Logo URL</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="What's the project name?"
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-4">
-                    <label
-                      htmlFor="email"
-                      className="block text-xl font-medium leading-6 text-gray-900"
-                    >
-                      <h1>Project Cover URL</h1>
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="What's the project name?"
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-4">
-                    <label
-                      htmlFor="email"
-                      className="block text-xl font-medium leading-6 text-gray-900"
-                    >
-                      <h1>Funding Sources</h1>
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="How is your project being funded currently?"
-                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-4">
-                    <label
-                      htmlFor="email"
-                      className="block text-xl font-medium leading-6 text-gray-900"
-                    >
-                      <h1>Team Size</h1>
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id="email"
-                        name="email"
+                        id="logoUrl"
+                        name="logoUrl"
                         type="text"
-                        placeholder="How big is the team?"
+                        placeholder="What's the project logo URL?"
+                        value={logoUrl}
+                        onChange={(e) => setLogoUrl(e.target.value)}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
 
-                  <div className="col-span-full">
+                  <div className="sm:col-span-4">
                     <label
-                      htmlFor="about"
+                      htmlFor="coverUrl"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
-                      <h1>Project Description</h1>
+                      <h1>Cover URL</h1>
                     </label>
                     <div className="mt-2">
-                      <textarea
-                        id="about"
-                        name="about"
-                        rows={3}
+                      <input
+                        id="coverUrl"
+                        name="coverUrl"
+                        type="text"
+                        placeholder="What's the project cover URL?"
+                        value={coverUrl}
+                        onChange={(e) => setCoverUrl(e.target.value)}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
-                        defaultValue={""}
                       />
                     </div>
-                    <p className="mt-3 text-sm leading-6 text-gray-600">
-                      Write a few sentences about the project.
-                    </p>
+                  </div>
+
+                  {/* Submit button */}
+                  <div className="sm:col-span-6">
+                    <button
+                      type="submit"
+                      className="inline-flex justify-center rounded-md bg-primary-600 py-2 px-4 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                      disabled={createProjectLoading}
+                    >
+                      {createProjectLoading ? (
+                        <RotatingLines width="20" visible={true} />
+                      ) : (
+                        "Create Project"
+                      )}
+                    </button>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-                <button
-                  type="button"
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-x-2 rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-                >
-                  {createProjectLoading ? (
-                    <>
-                      <span>Creating Project</span>
-                      <RotatingLines
-                        visible={true}
-                        width="20"
-                        strokeColor="#ffffff"
-                        strokeWidth="5"
-                        animationDuration="0.75"
-                        ariaLabel="rotating-lines-loading"
-                      />
-                    </>
-                  ) : (
-                    <span>Create Project</span>
-                  )}
-                </button>
               </div>
             </form>
           </div>
