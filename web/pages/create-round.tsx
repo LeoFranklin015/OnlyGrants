@@ -60,7 +60,7 @@ export default function CreateRound() {
           roundData.description,
           BigInt(7 * 24 * 60 * 60), // Voting period in seconds (e.g., 7 days)
         ],
-        value: roundData.matchingPool, // Send the matching pool amount as value
+        value: BigInt(roundData.matchingPool), // Send the matching pool amount as value
       });
     } catch (error) {
       console.error("Error creating round:", error);
