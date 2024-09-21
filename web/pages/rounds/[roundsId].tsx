@@ -67,7 +67,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Project() {
+export default function Rounds() {
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState("Project Details");
   const [tabs, setTabs] = useState([
@@ -628,28 +628,6 @@ export default function Project() {
                       </>
                     ) : (
                       <span>Contribute</span>
-                    )}
-                  </button>
-
-                  <button
-                    type="submit"
-                    onClick={contribute}
-                    className="mt-2 w-full flex items-center justify-center rounded-md border border-gray-400 bg-white px-8 py-3 text-base font-bold text-gray-900 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 focus:ring-offset-gray-50"
-                  >
-                    {contributeLoading ? (
-                      <>
-                        <span>Creating Project</span>
-                        <RotatingLines
-                          visible={true}
-                          width="20"
-                          strokeColor="#ffffff"
-                          strokeWidth="5"
-                          animationDuration="0.75"
-                          ariaLabel="rotating-lines-loading"
-                        />
-                      </>
-                    ) : (
-                      <span>Claim Rewards</span>
                     )}
                   </button>
                 </div>

@@ -40,7 +40,7 @@
     "sass": "^1.78.0",
     "swr": "^2.2.5",
     "viem": "2.x",
-    "wagmi": "^2.12.11"
+    "wagmi": "^2.12.11", "react-timeago": "^7.2.0"
   },
   "devDependencies": {
     "@types/bn.js": "^5.1.6",
