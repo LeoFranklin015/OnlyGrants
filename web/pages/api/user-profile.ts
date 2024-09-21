@@ -1,8 +1,22 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getDb } from '../../lib/db';
 
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function ensureTableExists(db: any) {
+    await db.run(`
+        CREATE TABLE IF NOT EXISTS user_profiles (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            email TEXT UNIQUE,
+            bio TEXT
+        )
+    `);
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const db = await getDb();
+    await ensureTableExists(db);
 
     switch (req.method) {
         case 'POST':
