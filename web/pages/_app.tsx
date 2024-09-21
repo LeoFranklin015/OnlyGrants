@@ -10,6 +10,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { config } from "@/utilities/wagmi";
+import { PopupProvider } from "@/utilities/projectContext";
 // import { NearContext } from "@/utilities/context";
 // import { NetworkId, HelloNearContract } from "@/utilities/config";
 // import { Wallet } from "@/utilities/near";
@@ -42,7 +43,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider locale={locale}>
               {/* <NearContext.Provider value={{ wallet, signedAccountId }}> */}
-              <Component {...pageProps} />
+              <PopupProvider>
+                <Component {...pageProps} />
+              </PopupProvider>
               {/* </NearContext.Provider> */}
             </RainbowKitProvider>
           </QueryClientProvider>
