@@ -14,8 +14,11 @@ import { resolve } from "path";
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) });
 
-const TESTNET_CHAIN_ID = 412346;
-const TESTNET_RPC_URL = "http://127.0.0.1:42069";
+const TESTNET_CHAIN_ID = 8008135;
+const TESTNET_RPC_URL = "https://api.helium.fhenix.zone";
+// const TESTNET_CHAIN_ID = 412346;
+// const TESTNET_RPC_URL = "http://127.0.0.1:42069";
+
 
 const testnetConfig: any = {
   chainId: TESTNET_CHAIN_ID,
@@ -42,9 +45,9 @@ if (!keys) {
 
 const config: HardhatUserConfig = {
   solidity: "0.8.25",
-  defaultNetwork: "localfhenix",
+  defaultNetwork: "testnet",
   networks: {
-    localfhenix: testnetConfig,
+    testnet: testnetConfig,
   },
   typechain: {
     outDir: "types",
