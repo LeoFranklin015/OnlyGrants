@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useRouter } from "next/router";
-
+import Link from "next/link";
 import AppLayout from "@/layouts/AppLayout";
 import {
   CalendarIcon,
@@ -87,9 +87,11 @@ const projects = [
 export default function Round() {
   const router = useRouter();
   const [show, setShow] = useState(false);
-  const [chatResponse, setChatResponse] = useState<any>(null);
+  const [chatResponse, setChatResponse] = useState(null);
   const [gaiaLoading, setGaiaLoading] = useState(false);
   const [query, setQuery] = useState("");
+
+  const { roundId } = router.query;
 
   const handlePickBestProject = async () => {
     setGaiaLoading(true);
@@ -204,9 +206,9 @@ export default function Round() {
             Applications close in{" "}
             <span className="font-semibold">71 days, 16 minutes!</span>
           </div>
-          <button className="mt-5 bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+          <Link href={`/create-project?roundId=${roundId}`} className="mt-5 bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium">
             Apply now!
-          </button>
+          </Link>
         </div>
       </div>
 
