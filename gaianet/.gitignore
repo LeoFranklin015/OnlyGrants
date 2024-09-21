@@ -1,0 +1,15 @@
+registry.wasm
+rag-api-server.wasm
+Qwen2-0.5B-Instruct-Q5_K_M.gguf
+qdrant.pid
+nomic-embed-text-v1.5.f16.gguf
+nodeid.json
+llamaedge.pid
+llama-api-server.wasm
+gaias.pid
+ae1c1644-8c9b-46d3-b041-dcb9cf622b97
+gaia-frp.pid
+deviceid.txt
+tmp
+qdrant
+dashboard
