@@ -3,6 +3,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   // const { projectsOSOData } = req.body;
+  const { query } = req.query;
   const headers = {
     accept: "application/json",
     "Content-Type": "application/json",
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
           },
           {
             role: "user",
-            content: "Suggest me projects related to AI",
+            content: query,
           },
         ],
       },

@@ -89,11 +89,12 @@ export default function Round() {
   const [show, setShow] = useState(false);
   const [chatResponse, setChatResponse] = useState<any>(null);
   const [gaiaLoading, setGaiaLoading] = useState(false);
+  const [query, setQuery] = useState("");
 
   const handlePickBestProject = async () => {
     setGaiaLoading(true);
     try {
-      const response = await axios.get("/api/openai-proxy");
+      const response = await axios.get("/api/openai-proxy?query=" + query);
       console.log(response.data);
       setChatResponse(response.data);
       setGaiaLoading(false);
@@ -332,13 +333,23 @@ export default function Round() {
                       </div>
                     )}
                   </div>
-                  <button
-                    type="button"
-                    onClick={handlePickBestProject}
-                    className="mt-2 w-full flex items-center justify-center rounded-md border border-transparent bg-primary-600 py-3 text-sm font-bold text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                  >
-                    Pick the best project to contribute to
-                  </button>
+                  <div className="flex-col items-center gap-2.5 justify-center">
+                    <input
+                      type="text"
+                      className="flex-1 rounded-md border border-gray-200 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 w-full"
+                      placeholder="Ask the GaiaGenie to suggest you projects to fund !"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={handlePickBestProject}
+                      className="mt-2 w-full flex items-center justify-center rounded-md border border-transparent bg-primary-600 py-3 text-sm font-bold text-white hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    >
+                      Pick the best project to contribute to
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
