@@ -1,0 +1,1184 @@
+[2024-09-21 17:49:21.506] [info] rag_api_server in src/main.rs:154: server_version: 0.9.4
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:162: model_name: Qwen2-0.5B-Instruct-Q5_K_M,nomic-embed-text-v1.5.f16
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:170: model_alias: default,embedding
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:184: ctx_size: 4096,8192
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:198: batch_size: 4096,8192
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:212: prompt_template: chatml,embedding
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:220: n_predict: 1024
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:223: n_gpu_layers: 100
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:236: threads: 2
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:250: rag_prompt: Use the following pieces of context to answer the user's question.\nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:271: qdrant_url: http://127.0.0.1:6333
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:274: qdrant_collection_name: default
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:277: qdrant_limit: 1
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:280: qdrant_score_threshold: 0.5
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:291: chunk_capacity: 100
+[2024-09-21 17:49:21.507] [info] rag_api_server in src/main.rs:294: rag_policy: system-message
+[2024-09-21 17:49:21.507] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:434: Initializing the core context for RAG scenarios
+[2024-09-21 17:49:21.511] [info] [WASI-NN] GGML backend: LLAMA_COMMIT 8f1d81a0
+[2024-09-21 17:49:21.511] [info] [WASI-NN] GGML backend: LLAMA_BUILD_NUMBER 3651
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: loaded meta data with 21 key-value pairs and 290 tensors from Qwen2-0.5B-Instruct-Q5_K_M.gguf (version GGUF V3 (latest))
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   1:                               general.name str              = Qwen2-0.5B-Instruct
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   2:                          qwen2.block_count u32              = 24
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   3:                       qwen2.context_length u32              = 32768
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   4:                     qwen2.embedding_length u32              = 896
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   5:                  qwen2.feed_forward_length u32              = 4864
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   6:                 qwen2.attention.head_count u32              = 14
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   7:              qwen2.attention.head_count_kv u32              = 2
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   8:                       qwen2.rope.freq_base f32              = 1000000.000000
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   9:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000001
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  10:                          general.file_type u32              = 17
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  11:                       tokenizer.ggml.model str              = gpt2
+[2024-09-21 17:49:21.533] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  12:                         tokenizer.ggml.pre str              = qwen2
+[2024-09-21 17:49:21.550] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  13:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+[2024-09-21 17:49:21.554] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  14:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  15:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  16:                tokenizer.ggml.eos_token_id u32              = 151645
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  17:            tokenizer.ggml.padding_token_id u32              = 151643
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  18:                tokenizer.ggml.bos_token_id u32              = 151643
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  19:                    tokenizer.chat_template str              = {% for message in messages %}{% if lo...
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  20:               general.quantization_version u32              = 2
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - type  f32:  121 tensors
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - type q5_1:  132 tensors
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - type q8_0:   13 tensors
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - type q5_K:   12 tensors
+[2024-09-21 17:49:21.571] [info] [WASI-NN] llama.cpp: llama_model_loader: - type q6_K:   12 tensors
+[2024-09-21 17:49:21.665] [info] [WASI-NN] llama.cpp: llm_load_vocab: special tokens cache size = 293
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_vocab: token to piece cache size = 0.9338 MB
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: format           = GGUF V3 (latest)
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: arch             = qwen2
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: vocab type       = BPE
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_vocab          = 151936
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_merges         = 151387
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: vocab_only       = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_ctx_train      = 32768
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd           = 896
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_layer          = 24
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_head           = 14
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_head_kv        = 2
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_rot            = 64
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_swa            = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_head_k    = 64
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_head_v    = 64
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_gqa            = 7
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_k_gqa     = 128
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_v_gqa     = 128
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_norm_eps       = 0.0e+00
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_norm_rms_eps   = 1.0e-06
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_clamp_kqv      = 0.0e+00
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_max_alibi_bias = 0.0e+00
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_logit_scale    = 0.0e+00
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_ff             = 4864
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_expert         = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_expert_used    = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: causal attn      = 1
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: pooling type     = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: rope type        = 2
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: rope scaling     = linear
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: freq_base_train  = 1000000.0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: freq_scale_train = 1
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_ctx_orig_yarn  = 32768
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: rope_finetuned   = unknown
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_d_conv       = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_d_inner      = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_d_state      = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_dt_rank      = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_dt_b_c_rms   = 0
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model type       = 1B
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model ftype      = Q5_K - Medium
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model params     = 494.03 M
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model size       = 394.95 MiB (6.71 BPW) 
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: general.name     = Qwen2-0.5B-Instruct
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: BOS token        = 151643 '<|endoftext|>'
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: EOS token        = 151645 '<|im_end|>'
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: PAD token        = 151643 '<|endoftext|>'
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: LF token         = 148848 'ÄĬ'
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: EOT token        = 151645 '<|im_end|>'
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_print_meta: max token length = 256
+[2024-09-21 17:49:21.696] [info] [WASI-NN] llama.cpp: llm_load_tensors: ggml ctx size =    0.25 MiB
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: ggml_backend_metal_log_allocated_size: allocated buffer, size =   394.97 MiB, (  395.03 /  5461.34)
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: llm_load_tensors: offloading 24 repeating layers to GPU
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: llm_load_tensors: offloading non-repeating layers to GPU
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: llm_load_tensors: offloaded 25/25 layers to GPU
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: llm_load_tensors:        CPU buffer size =   137.94 MiB
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: llm_load_tensors:      Metal buffer size =   394.97 MiB
+[2024-09-21 17:49:21.738] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 17:49:21.743] [info] [WASI-NN] GGML backend: llama_system_info: AVX = 0 | AVX_VNNI = 0 | AVX2 = 0 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | AVX512_BF16 = 0 | FMA = 0 | NEON = 1 | SVE = 0 | ARM_FMA = 1 | F16C = 0 | FP16_VA = 1 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 0 | SSSE3 = 0 | VSX = 0 | MATMUL_INT8 = 0 | LLAMAFILE = 1 | 
+[2024-09-21 17:49:21.743] [info] [WASI-NN] GGML backend: LLAMA_COMMIT 8f1d81a0
+[2024-09-21 17:49:21.743] [info] [WASI-NN] GGML backend: LLAMA_BUILD_NUMBER 3651
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: loaded meta data with 22 key-value pairs and 112 tensors from nomic-embed-text-v1.5.f16.gguf (version GGUF V3 (latest))
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   0:                       general.architecture str              = nomic-bert
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   1:                               general.name str              = nomic-embed-text-v1.5
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   2:                     nomic-bert.block_count u32              = 12
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   3:                  nomic-bert.context_length u32              = 2048
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   4:                nomic-bert.embedding_length u32              = 768
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   5:             nomic-bert.feed_forward_length u32              = 3072
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   6:            nomic-bert.attention.head_count u32              = 12
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   7:    nomic-bert.attention.layer_norm_epsilon f32              = 0.000000
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   8:                          general.file_type u32              = 1
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv   9:                nomic-bert.attention.causal bool             = false
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  10:                    nomic-bert.pooling_type u32              = 1
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  11:                  nomic-bert.rope.freq_base f32              = 1000.000000
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  12:            tokenizer.ggml.token_type_count u32              = 2
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  13:                tokenizer.ggml.bos_token_id u32              = 101
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  14:                tokenizer.ggml.eos_token_id u32              = 102
+[2024-09-21 17:49:21.747] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  15:                       tokenizer.ggml.model str              = bert
+[2024-09-21 17:49:21.751] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  16:                      tokenizer.ggml.tokens arr[str,30522]   = ["[PAD]", "[unused0]", "[unused1]", "...
+[2024-09-21 17:49:21.755] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  17:                      tokenizer.ggml.scores arr[f32,30522]   = [-1000.000000, -1000.000000, -1000.00...
+[2024-09-21 17:49:21.756] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  18:                  tokenizer.ggml.token_type arr[i32,30522]   = [3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+[2024-09-21 17:49:21.756] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  19:            tokenizer.ggml.unknown_token_id u32              = 100
+[2024-09-21 17:49:21.756] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  20:          tokenizer.ggml.seperator_token_id u32              = 102
+[2024-09-21 17:49:21.756] [info] [WASI-NN] llama.cpp: llama_model_loader: - kv  21:            tokenizer.ggml.padding_token_id u32              = 0
+[2024-09-21 17:49:21.756] [info] [WASI-NN] llama.cpp: llama_model_loader: - type  f32:   51 tensors
+[2024-09-21 17:49:21.756] [info] [WASI-NN] llama.cpp: llama_model_loader: - type  f16:   61 tensors
+[2024-09-21 17:49:21.760] [info] [WASI-NN] llama.cpp: llm_load_vocab: special tokens cache size = 5
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_vocab: token to piece cache size = 0.2032 MB
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: format           = GGUF V3 (latest)
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: arch             = nomic-bert
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: vocab type       = WPM
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_vocab          = 30522
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_merges         = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: vocab_only       = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_ctx_train      = 2048
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd           = 768
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_layer          = 12
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_head           = 12
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_head_kv        = 12
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_rot            = 64
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_swa            = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_head_k    = 64
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_head_v    = 64
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_gqa            = 1
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_k_gqa     = 768
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_embd_v_gqa     = 768
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_norm_eps       = 1.0e-12
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_norm_rms_eps   = 0.0e+00
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_clamp_kqv      = 0.0e+00
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_max_alibi_bias = 0.0e+00
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: f_logit_scale    = 0.0e+00
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_ff             = 3072
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_expert         = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_expert_used    = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: causal attn      = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: pooling type     = 1
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: rope type        = 2
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: rope scaling     = linear
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: freq_base_train  = 1000.0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: freq_scale_train = 1
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: n_ctx_orig_yarn  = 2048
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: rope_finetuned   = unknown
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_d_conv       = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_d_inner      = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_d_state      = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_dt_rank      = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: ssm_dt_b_c_rms   = 0
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model type       = 137M
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model ftype      = F16
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model params     = 136.73 M
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: model size       = 260.86 MiB (16.00 BPW) 
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: general.name     = nomic-embed-text-v1.5
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: BOS token        = 101 '[CLS]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: EOS token        = 102 '[SEP]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: UNK token        = 100 '[UNK]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: SEP token        = 102 '[SEP]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: PAD token        = 0 '[PAD]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: CLS token        = 101 '[CLS]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: MASK token       = 103 '[MASK]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: LF token         = 0 '[PAD]'
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_print_meta: max token length = 21
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_tensors: ggml ctx size =    0.10 MiB
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: ggml_backend_metal_log_allocated_size: allocated buffer, size =   260.88 MiB, (  655.91 /  5461.34)
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_tensors: offloading 12 repeating layers to GPU
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_tensors: offloading non-repeating layers to GPU
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_tensors: offloaded 13/13 layers to GPU
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_tensors:        CPU buffer size =    44.72 MiB
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: llm_load_tensors:      Metal buffer size =   260.87 MiB
+[2024-09-21 17:49:21.762] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 17:49:21.763] [info] [WASI-NN] GGML backend: llama_system_info: AVX = 0 | AVX_VNNI = 0 | AVX2 = 0 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | AVX512_BF16 = 0 | FMA = 0 | NEON = 1 | SVE = 0 | ARM_FMA = 1 | F16C = 0 | FP16_VA = 1 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 0 | SSSE3 = 0 | VSX = 0 | MATMUL_INT8 = 0 | LLAMAFILE = 1 | 
+[2024-09-21 17:49:21.763] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:489: running mode: rag
+[2024-09-21 17:49:21.763] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:502: The core context for RAG scenarios has been initialized
+[2024-09-21 17:49:21.763] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:512: Getting the plugin info
+[2024-09-21 17:49:21.763] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 17:49:21.763] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 17:49:21.763] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:592: Getting the plugin info by the graph named Qwen2-0.5B-Instruct-Q5_K_M
+[2024-09-21 17:49:21.763] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M
+[2024-09-21 17:49:21.763] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 95
+[2024-09-21 17:49:21.763] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:652: Plugin info: b3651(commit 8f1d81a0)
+[2024-09-21 17:49:21.763] [info] rag_api_server in src/main.rs:404: plugin_ggml_version: b3651 (commit 8f1d81a0)
+[2024-09-21 17:49:21.763] [info] rag_api_server in src/main.rs:414: socket_address: 0.0.0.0:8080
+[2024-09-21 17:49:21.763] [info] rag_api_server in src/main.rs:421: gaianet_node_version: 0.4.2
+[2024-09-21 17:49:33.405] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:60274, local_addr: 0.0.0.0:8080
+[2024-09-21 17:49:33.406] [info] rag_api_server in src/main.rs:495: method: POST, http_version: HTTP/1.1, content-length: 101
+[2024-09-21 17:49:33.406] [info] rag_api_server in src/main.rs:496: endpoint: /v1/chat/completions
+[2024-09-21 17:49:33.406] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:189: Handling the coming rag query request
+[2024-09-21 17:49:33.406] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:212: Prepare the chat completion request.
+[2024-09-21 17:49:33.407] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:248: user: chatcmpl-a735f50a-3146-446f-be8f-9eb065371a67
+[2024-09-21 17:49:33.407] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:262: Compute embeddings for user query.
+[2024-09-21 17:49:33.407] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:291: query text: What is your name?
+[2024-09-21 17:49:33.407] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:51: Get the names of the embedding models.
+[2024-09-21 17:49:33.407] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:98: Compute embeddings for the user query.
+[2024-09-21 17:49:33.407] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 17:49:33.408] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 17:49:33.408] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:28: Computing embeddings
+[2024-09-21 17:49:33.408] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 17:49:33.408] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 17:49:33.408] [info] llama_core::graph in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/graph.rs:296: Update metadata for the model named nomic-embed-text-v1.5.f16
+[2024-09-21 17:49:33.408] [info] llama_core::graph in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/graph.rs:314: Metadata updated successfully.
+[2024-09-21 17:49:33.408] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:133: Compute embeddings for 1 chunks
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 8192
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 8192
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 8192
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000.0
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 17:49:33.408] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 17:49:33.409] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 17:49:33.413] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 17:49:34.398] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 17:49:34.399] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 17:49:34.399] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 17:49:34.399] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 17:49:34.399] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 17:49:34.399] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 17:49:34.399] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 17:49:34.399] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 17:49:35.018] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =   288.00 MiB
+[2024-09-21 17:49:35.018] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =  288.00 MiB, K (f16):  144.00 MiB, V (f16):  144.00 MiB
+[2024-09-21 17:49:35.019] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.00 MiB
+[2024-09-21 17:49:35.023] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =  3728.03 MiB
+[2024-09-21 17:49:35.023] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =   536.06 MiB
+[2024-09-21 17:49:35.023] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 453
+[2024-09-21 17:49:35.023] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 17:49:35.024] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 17:49:35.030] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:153: compute embeddings for chunk 1
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 8192
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 8192
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 8192
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000.0
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 17:49:35.030] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 17:49:35.031] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 17:49:35.032] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 17:49:35.058] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =   288.00 MiB
+[2024-09-21 17:49:35.058] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =  288.00 MiB, K (f16):  144.00 MiB, V (f16):  144.00 MiB
+[2024-09-21 17:49:35.058] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.00 MiB
+[2024-09-21 17:49:35.059] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =  3728.03 MiB
+[2024-09-21 17:49:35.059] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =   536.06 MiB
+[2024-09-21 17:49:35.059] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 453
+[2024-09-21 17:49:35.059] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 17:49:38.104] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 17:49:38.348] [info] [WASI-NN] llama.cpp: llama_print_timings:        load time =   16336.72 ms
+[2024-09-21 17:49:38.348] [info] [WASI-NN] llama.cpp: llama_print_timings:      sample time =       0.00 ms /     1 runs   (    0.00 ms per token,      inf tokens per second)
+[2024-09-21 17:49:38.348] [info] [WASI-NN] llama.cpp: llama_print_timings: prompt eval time =    3032.88 ms /     7 tokens (  433.27 ms per token,     2.31 tokens per second)
+[2024-09-21 17:49:38.348] [info] [WASI-NN] llama.cpp: llama_print_timings:        eval time =       0.00 ms /     1 runs   (    0.00 ms per token,      inf tokens per second)
+[2024-09-21 17:49:38.348] [info] [WASI-NN] llama.cpp: llama_print_timings:       total time =   16340.86 ms /     8 tokens
+[2024-09-21 17:49:38.353] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 17:49:38.377] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named nomic-embed-text-v1.5.f16
+[2024-09-21 17:49:38.378] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 11289
+[2024-09-21 17:49:38.386] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:243: Get token info from the model named nomic-embed-text-v1.5.f16.
+[2024-09-21 17:49:38.386] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named nomic-embed-text-v1.5.f16
+[2024-09-21 17:49:38.386] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 95
+[2024-09-21 17:49:38.386] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:282: prompt tokens: 7, completion tokens: 0
+[2024-09-21 17:49:38.386] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:211: token usage of embeddings: 7 prompt tokens, 0 comletion tokens
+[2024-09-21 17:49:38.386] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:123: Embeddings computed successfully.
+[2024-09-21 17:49:38.386] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:133: Retrieve context.
+[2024-09-21 17:49:38.387] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:135: qdrant_url: http://127.0.0.1:6333, qdrant_collection_name: default, limit: 1, score_threshold: 0.5
+[2024-09-21 17:49:38.387] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 17:49:38.387] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 17:49:38.387] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:281: Search similar points from the qdrant instance.
+[2024-09-21 17:49:38.485] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:294: Number of similar points found: 0
+[2024-09-21 17:49:38.485] [warning] rag_api_server::backend::ggml in src/backend/ggml.rs:436: No point retrieved (score < threshold 0.5)
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:45: tool choice: Some(None)
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:46: tools: None
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:47: stream mode: Some(false)
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:622: Processing chat completion request in non-stream mode.
+[2024-09-21 17:49:38.485] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 17:49:38.485] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:644: user: chatcmpl-a735f50a-3146-446f-be8f-9eb065371a67
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1604: Check model metadata.
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2267: Get the model metadata.
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1903: Build the chat prompt from the chat messages.
+[2024-09-21 17:49:38.485] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2267: Get the model metadata.
+[2024-09-21 17:49:38.486] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2201: Set prompt to the chat model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 4096
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 32
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 32
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000000.0
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 17:49:38.486] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 17:49:38.487] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 17:49:38.488] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 17:49:38.495] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 17:49:38.509] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =    48.00 MiB
+[2024-09-21 17:49:38.509] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =   48.00 MiB, K (f16):   24.00 MiB, V (f16):   24.00 MiB
+[2024-09-21 17:49:38.509] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.58 MiB
+[2024-09-21 17:49:38.510] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =    18.66 MiB
+[2024-09-21 17:49:38.510] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =     0.61 MiB
+[2024-09-21 17:49:38.510] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 846
+[2024-09-21 17:49:38.510] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 17:49:38.512] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 17:49:38.513] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:243: Get token info from the model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 17:49:38.513] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M
+[2024-09-21 17:49:38.513] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 96
+[2024-09-21 17:49:38.513] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:282: prompt tokens: 25, completion tokens: 0
+[2024-09-21 17:49:38.513] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:655: prompt:
+<|im_start|>system
+Answer as concisely as possible.<|im_end|>
+<|im_start|>user
+What is your name?<|im_end|>
+<|im_start|>assistant
+[2024-09-21 17:49:38.513] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:656: available_completion_tokens: 820
+[2024-09-21 17:49:38.513] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:657: tool_use: false
+[2024-09-21 17:49:38.513] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1709: available_completion_tokens: 820, max_tokens from request: 1024, n_predict: 1024
+[2024-09-21 17:49:38.513] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1719: update n_predict from 1024 to 820
+[2024-09-21 17:49:38.513] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2327: Update the model metadata.
+[2024-09-21 17:49:38.514] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2201: Set prompt to the chat model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 4096
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 32
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 32
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000000.0
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 17:49:38.514] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 17:49:38.515] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 17:49:38.523] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =    48.00 MiB
+[2024-09-21 17:49:38.523] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =   48.00 MiB, K (f16):   24.00 MiB, V (f16):   24.00 MiB
+[2024-09-21 17:49:38.523] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.58 MiB
+[2024-09-21 17:49:38.524] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =    18.66 MiB
+[2024-09-21 17:49:38.524] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =     0.61 MiB
+[2024-09-21 17:49:38.524] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 846
+[2024-09-21 17:49:38.524] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 17:49:38.524] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 17:49:38.525] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:681: Compute chat completion.
+[2024-09-21 17:49:38.525] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:742: Compute chat completion by the model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 4096
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 32
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 32
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000000.0
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 17:49:38.525] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 17:49:38.526] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 17:49:38.534] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =    48.00 MiB
+[2024-09-21 17:49:38.534] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =   48.00 MiB, K (f16):   24.00 MiB, V (f16):   24.00 MiB
+[2024-09-21 17:49:38.534] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.58 MiB
+[2024-09-21 17:49:38.535] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =    18.66 MiB
+[2024-09-21 17:49:38.535] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =     0.61 MiB
+[2024-09-21 17:49:38.535] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 846
+[2024-09-21 17:49:38.535] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 17:49:39.263] [info] [WASI-NN] GGML backend: EOS token found
+[2024-09-21 17:49:39.263] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 17:49:39.263] [info] [WASI-NN] llama.cpp: llama_print_timings:        load time =   17362.01 ms
+[2024-09-21 17:49:39.263] [info] [WASI-NN] llama.cpp: llama_print_timings:      sample time =      12.12 ms /    15 runs   (    0.81 ms per token,  1237.83 tokens per second)
+[2024-09-21 17:49:39.263] [info] [WASI-NN] llama.cpp: llama_print_timings: prompt eval time =     523.43 ms /    25 tokens (   20.94 ms per token,    47.76 tokens per second)
+[2024-09-21 17:49:39.263] [info] [WASI-NN] llama.cpp: llama_print_timings:        eval time =     178.88 ms /    14 runs   (   12.78 ms per token,    78.27 tokens per second)
+[2024-09-21 17:49:39.263] [info] [WASI-NN] llama.cpp: llama_print_timings:       total time =   17565.75 ms /    39 tokens
+[2024-09-21 17:49:39.263] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 17:49:39.266] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M
+[2024-09-21 17:49:39.266] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 60
+[2024-09-21 17:49:39.266] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:761: raw generation: 
+I am an AI language model and do not have a name.<|im_end|>
+[2024-09-21 17:49:39.266] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1753: Post-process the generated output.
+[2024-09-21 17:49:39.267] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:769: post-processed generation:
+I am an AI language model and do not have a name.
+[2024-09-21 17:49:39.267] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:243: Get token info from the model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 17:49:39.267] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M
+[2024-09-21 17:49:39.267] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 97
+[2024-09-21 17:49:39.267] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:282: prompt tokens: 25, completion tokens: 15
+[2024-09-21 17:49:39.267] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:775: prompt tokens: 25, completion tokens: 15
+[2024-09-21 17:49:39.267] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:670: End of the chat completion.
+[2024-09-21 17:49:39.268] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:502: Finish chat completions in non-stream mode
+[2024-09-21 17:49:39.268] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:529: Send the rag query response
+[2024-09-21 17:49:39.268] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 17:49:39.269] [info] rag_api_server in src/main.rs:517: response_body_size: 365
+[2024-09-21 17:49:39.269] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 17:49:39.269] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 17:50:15.281] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:60449, local_addr: 0.0.0.0:8080
+[2024-09-21 17:50:15.283] [info] rag_api_server in src/main.rs:498: method: GET, http_version: HTTP/1.1
+[2024-09-21 17:50:15.283] [info] rag_api_server in src/main.rs:499: endpoint: /v1/info
+[2024-09-21 17:50:15.283] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1677: Handling the coming server info request.
+[2024-09-21 17:50:15.284] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1724: Send the server info response.
+[2024-09-21 17:50:15.284] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 17:50:15.285] [info] rag_api_server in src/main.rs:517: response_body_size: 811
+[2024-09-21 17:50:15.285] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 17:50:15.285] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 18:01:15.692] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:63184, local_addr: 0.0.0.0:8080
+[2024-09-21 18:01:15.698] [info] rag_api_server in src/main.rs:498: method: GET, http_version: HTTP/1.1
+[2024-09-21 18:01:15.698] [info] rag_api_server in src/main.rs:499: endpoint: /config_pub.json
+[2024-09-21 18:01:15.700] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 18:01:15.700] [info] rag_api_server in src/main.rs:517: response_body_size: 1260
+[2024-09-21 18:01:15.700] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 18:01:15.700] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 18:01:33.989] [info] rag_api_server in src/main.rs:498: method: OPTIONS, http_version: HTTP/1.1
+[2024-09-21 18:01:33.990] [info] rag_api_server in src/main.rs:499: endpoint: /v1/chat/completions
+[2024-09-21 18:01:33.990] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:189: Handling the coming rag query request
+[2024-09-21 18:01:33.990] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 18:01:33.990] [info] rag_api_server in src/main.rs:517: response_body_size: 0
+[2024-09-21 18:01:33.990] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 18:01:33.990] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 18:01:34.995] [info] rag_api_server in src/main.rs:495: method: POST, http_version: HTTP/1.1, content-length: 361
+[2024-09-21 18:01:34.995] [info] rag_api_server in src/main.rs:496: endpoint: /v1/chat/completions
+[2024-09-21 18:01:34.995] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:189: Handling the coming rag query request
+[2024-09-21 18:01:34.995] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:212: Prepare the chat completion request.
+[2024-09-21 18:01:34.996] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:248: user: c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93
+[2024-09-21 18:01:34.996] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:262: Compute embeddings for user query.
+[2024-09-21 18:01:34.996] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:291: query text: tell me projects about AI-powered Language Translation
+[2024-09-21 18:01:34.996] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:51: Get the names of the embedding models.
+[2024-09-21 18:01:34.996] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:98: Compute embeddings for the user query.
+[2024-09-21 18:01:34.996] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 18:01:34.996] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 18:01:34.996] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:28: Computing embeddings
+[2024-09-21 18:01:34.996] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 18:01:34.996] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 18:01:34.996] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:133: Compute embeddings for 1 chunks
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 8192
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 8192
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 8192
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000.0
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 18:01:34.996] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 18:01:34.997] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 18:01:34.997] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 18:01:34.998] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 18:01:35.075] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =   288.00 MiB
+[2024-09-21 18:01:35.075] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =  288.00 MiB, K (f16):  144.00 MiB, V (f16):  144.00 MiB
+[2024-09-21 18:01:35.075] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.00 MiB
+[2024-09-21 18:01:35.077] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =  3728.03 MiB
+[2024-09-21 18:01:35.077] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =   536.06 MiB
+[2024-09-21 18:01:35.077] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 453
+[2024-09-21 18:01:35.077] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 18:01:35.078] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 18:01:35.083] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:153: compute embeddings for chunk 1
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 8192
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 8192
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 8192
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000.0
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 18:01:35.083] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 18:01:35.085] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 18:01:35.086] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 18:01:35.087] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 18:01:35.111] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =   288.00 MiB
+[2024-09-21 18:01:35.111] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =  288.00 MiB, K (f16):  144.00 MiB, V (f16):  144.00 MiB
+[2024-09-21 18:01:35.111] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.00 MiB
+[2024-09-21 18:01:35.111] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =  3728.03 MiB
+[2024-09-21 18:01:35.111] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =   536.06 MiB
+[2024-09-21 18:01:35.111] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 453
+[2024-09-21 18:01:35.111] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 18:01:36.759] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 18:01:36.760] [info] [WASI-NN] llama.cpp: llama_print_timings:        load time =  734995.35 ms
+[2024-09-21 18:01:36.760] [info] [WASI-NN] llama.cpp: llama_print_timings:      sample time =       0.00 ms /     1 runs   (    0.00 ms per token,      inf tokens per second)
+[2024-09-21 18:01:36.760] [info] [WASI-NN] llama.cpp: llama_print_timings: prompt eval time =    1638.26 ms /    11 tokens (  148.93 ms per token,     6.71 tokens per second)
+[2024-09-21 18:01:36.760] [info] [WASI-NN] llama.cpp: llama_print_timings:        eval time =       0.00 ms /     1 runs   (    0.00 ms per token,      inf tokens per second)
+[2024-09-21 18:01:36.760] [info] [WASI-NN] llama.cpp: llama_print_timings:       total time =  734996.86 ms /    12 tokens
+[2024-09-21 18:01:36.761] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 18:01:36.768] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named nomic-embed-text-v1.5.f16
+[2024-09-21 18:01:36.768] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 11279
+[2024-09-21 18:01:36.772] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:243: Get token info from the model named nomic-embed-text-v1.5.f16.
+[2024-09-21 18:01:36.772] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named nomic-embed-text-v1.5.f16
+[2024-09-21 18:01:36.772] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 96
+[2024-09-21 18:01:36.773] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:282: prompt tokens: 11, completion tokens: 0
+[2024-09-21 18:01:36.773] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:211: token usage of embeddings: 11 prompt tokens, 0 comletion tokens
+[2024-09-21 18:01:36.773] [info] llama_core::embeddings in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/embeddings.rs:123: Embeddings computed successfully.
+[2024-09-21 18:01:36.773] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:133: Retrieve context.
+[2024-09-21 18:01:36.773] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:135: qdrant_url: http://127.0.0.1:6333, qdrant_collection_name: default, limit: 1, score_threshold: 0.5
+[2024-09-21 18:01:36.773] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 18:01:36.773] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 18:01:36.773] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:281: Search similar points from the qdrant instance.
+[2024-09-21 18:01:36.862] [info] llama_core::rag in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/rag.rs:294: Number of similar points found: 1
+[2024-09-21 18:01:36.862] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:388: point: 0, score: 0.78458524, source: "AI-powered Language Translation\nType: Technology\nDescription: A project to develop real-time, AI-powered translation services for multiple languages, using machine learning and natural language processing.\nRenewable Energy Grid Optimization\nType: Engineering\nDescription: Optimizing power distribution in smart grids by integrating renewable energy sources like solar and wind with advanced data analytics.\nCancer Immunotherapy Research\nType: Medicine\nDescription: Exploring new ways to boost the immune system’s ability to fight cancer through targeted immunotherapy techniques.\nAutonomous Drone Delivery System\nType: Logistics\nDescription: Developing a fully autonomous drone system to deliver packages efficiently, reducing the reliance on traditional delivery methods.\nClimate Change Impact Modeling\nType: Environmental Science\nDescription: Creating models to predict the future impact of climate change on various ecosystems and urban environments.\nBlockchain-based Voting System\nType: Technology\nDescription: Implementing a decentralized, secure, and transparent voting system using blockchain technology to ensure fair elections.\n3D-Printed Prosthetics for Amputees\nType: Medical Engineering\nDescription: Designing customizable, affordable prosthetics for amputees using 3D printing technology to improve accessibility and quality of life.\nQuantum Computing Algorithms\nType: Computer Science\nDescription: Researching new algorithms for quantum computers that can solve complex problems faster than classical computers.\nSustainable Agriculture with AI\nType: Agriculture\nDescription: Leveraging AI to optimize crop yields, monitor soil health, and reduce water usage in sustainable farming practices.\nNeuroscience Brain Mapping\nType: Science\nDescription: Mapping neural pathways in the human brain to better understand cognition, memory, and neurological diseases\n"
+[2024-09-21 18:01:36.863] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:87: Get the chat prompt template type from the chat model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 18:01:36.863] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:122: prompt_template: chatml
+[2024-09-21 18:01:36.863] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:567: rag_policy: system-message
+[2024-09-21 18:01:36.863] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:571: context:
+"AI-powered Language Translation\nType: Technology\nDescription: A project to develop real-time, AI-powered translation services for multiple languages, using machine learning and natural language processing.\nRenewable Energy Grid Optimization\nType: Engineering\nDescription: Optimizing power distribution in smart grids by integrating renewable energy sources like solar and wind with advanced data analytics.\nCancer Immunotherapy Research\nType: Medicine\nDescription: Exploring new ways to boost the immune system’s ability to fight cancer through targeted immunotherapy techniques.\nAutonomous Drone Delivery System\nType: Logistics\nDescription: Developing a fully autonomous drone system to deliver packages efficiently, reducing the reliance on traditional delivery methods.\nClimate Change Impact Modeling\nType: Environmental Science\nDescription: Creating models to predict the future impact of climate change on various ecosystems and urban environments.\nBlockchain-based Voting System\nType: Technology\nDescription: Implementing a decentralized, secure, and transparent voting system using blockchain technology to ensure fair elections.\n3D-Printed Prosthetics for Amputees\nType: Medical Engineering\nDescription: Designing customizable, affordable prosthetics for amputees using 3D printing technology to improve accessibility and quality of life.\nQuantum Computing Algorithms\nType: Computer Science\nDescription: Researching new algorithms for quantum computers that can solve complex problems faster than classical computers.\nSustainable Agriculture with AI\nType: Agriculture\nDescription: Leveraging AI to optimize crop yields, monitor soil health, and reduce water usage in sustainable farming practices.\nNeuroscience Brain Mapping\nType: Science\nDescription: Mapping neural pathways in the human brain to better understand cognition, memory, and neurological diseases\n"
+[2024-09-21 18:01:36.863] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:575: Merge RAG context into system message.
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:45: tool choice: Some(None)
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:46: tools: None
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:47: stream mode: Some(true)
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:82: Process chat completion request in the stream mode.
+[2024-09-21 18:01:36.864] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:698: Get the running mode.
+[2024-09-21 18:01:36.864] [info] llama_core in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/lib.rs:723: running mode: rag
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:104: user: c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:113: include_usage: true
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1604: Check model metadata.
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2267: Get the model metadata.
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1903: Build the chat prompt from the chat messages.
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2267: Get the model metadata.
+[2024-09-21 18:01:36.864] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2201: Set prompt to the chat model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 18:01:36.864] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 4096
+[2024-09-21 18:01:36.864] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 32
+[2024-09-21 18:01:36.864] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 32
+[2024-09-21 18:01:36.864] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 18:01:36.864] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000000.0
+[2024-09-21 18:01:36.864] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 18:01:36.864] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 18:01:36.865] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 18:01:36.865] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 18:01:36.865] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 18:01:36.866] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 18:01:36.874] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =    48.00 MiB
+[2024-09-21 18:01:36.874] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =   48.00 MiB, K (f16):   24.00 MiB, V (f16):   24.00 MiB
+[2024-09-21 18:01:36.874] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.58 MiB
+[2024-09-21 18:01:36.876] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =    18.66 MiB
+[2024-09-21 18:01:36.876] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =     0.61 MiB
+[2024-09-21 18:01:36.876] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 846
+[2024-09-21 18:01:36.876] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 18:01:36.914] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 18:01:36.915] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:243: Get token info from the model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 18:01:36.915] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M
+[2024-09-21 18:01:36.915] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 98
+[2024-09-21 18:01:36.915] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:282: prompt tokens: 421, completion tokens: 15
+[2024-09-21 18:01:36.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:124: prompt:
+<|im_start|>system
+You are a helpful, respectful, and honest assistant. Always answer accurately, while being safe.
+Use the following pieces of context to answer the user's question.\nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n
+"AI-powered Language Translation\nType: Technology\nDescription: A project to develop real-time, AI-powered translation services for multiple languages, using machine learning and natural language processing.\nRenewable Energy Grid Optimization\nType: Engineering\nDescription: Optimizing power distribution in smart grids by integrating renewable energy sources like solar and wind with advanced data analytics.\nCancer Immunotherapy Research\nType: Medicine\nDescription: Exploring new ways to boost the immune system’s ability to fight cancer through targeted immunotherapy techniques.\nAutonomous Drone Delivery System\nType: Logistics\nDescription: Developing a fully autonomous drone system to deliver packages efficiently, reducing the reliance on traditional delivery methods.\nClimate Change Impact Modeling\nType: Environmental Science\nDescription: Creating models to predict the future impact of climate change on various ecosystems and urban environments.\nBlockchain-based Voting System\nType: Technology\nDescription: Implementing a decentralized, secure, and transparent voting system using blockchain technology to ensure fair elections.\n3D-Printed Prosthetics for Amputees\nType: Medical Engineering\nDescription: Designing customizable, affordable prosthetics for amputees using 3D printing technology to improve accessibility and quality of life.\nQuantum Computing Algorithms\nType: Computer Science\nDescription: Researching new algorithms for quantum computers that can solve complex problems faster than classical computers.\nSustainable Agriculture with AI\nType: Agriculture\nDescription: Leveraging AI to optimize crop yields, monitor soil health, and reduce water usage in sustainable farming practices.\nNeuroscience Brain Mapping\nType: Science\nDescription: Mapping neural pathways in the human brain to better understand cognition, memory, and neurological diseases\n"<|im_end|>
+<|im_start|>user
+tell me projects about AI-powered Language Translation<|im_end|>
+<|im_start|>assistant
+[2024-09-21 18:01:36.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:125: available_completion_tokens: 820
+[2024-09-21 18:01:36.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:126: tool_use: false
+[2024-09-21 18:01:36.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1709: available_completion_tokens: 820, max_tokens from request: 1024, n_predict: 1024
+[2024-09-21 18:01:36.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:1719: update n_predict from 1024 to 820
+[2024-09-21 18:01:36.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2327: Update the model metadata.
+[2024-09-21 18:01:36.916] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2201: Set prompt to the chat model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 4096
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 32
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 32
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000000.0
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 18:01:36.916] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 18:01:36.919] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 18:01:36.919] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 18:01:36.921] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 18:01:36.929] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =    48.00 MiB
+[2024-09-21 18:01:36.929] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =   48.00 MiB, K (f16):   24.00 MiB, V (f16):   24.00 MiB
+[2024-09-21 18:01:36.929] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.58 MiB
+[2024-09-21 18:01:36.930] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =    18.66 MiB
+[2024-09-21 18:01:36.931] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =     0.61 MiB
+[2024-09-21 18:01:36.931] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 846
+[2024-09-21 18:01:36.931] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 18:01:36.933] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 18:01:36.934] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:193: End of the chat completion stream.
+[2024-09-21 18:01:36.934] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:461: finish chat completions in stream mode
+[2024-09-21 18:01:36.934] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:529: Send the rag query response
+[2024-09-21 18:01:36.934] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 18:01:36.934] [info] rag_api_server in src/main.rs:517: response_body_size: 0
+[2024-09-21 18:01:36.934] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 18:01:36.935] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 18:01:36.935] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ctx      = 4096
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_batch    = 32
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: n_ubatch   = 32
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: flash_attn = 0
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_base  = 1000000.0
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: freq_scale = 1
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: ggml_metal_init: allocating
+[2024-09-21 18:01:36.935] [info] [WASI-NN] llama.cpp: ggml_metal_init: found device: Apple M1
+[2024-09-21 18:01:36.936] [info] [WASI-NN] llama.cpp: ggml_metal_init: picking default device: Apple M1
+[2024-09-21 18:01:36.936] [info] [WASI-NN] llama.cpp: ggml_metal_init: using embedded metal library
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU name:   Apple M1
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyApple7  (1007)
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup reduction support   = true
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: simdgroup matrix mul. support = true
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: hasUnifiedMemory              = true
+[2024-09-21 18:01:36.937] [info] [WASI-NN] llama.cpp: ggml_metal_init: recommendedMaxWorkingSetSize  =  5726.63 MB
+[2024-09-21 18:01:36.945] [info] [WASI-NN] llama.cpp: llama_kv_cache_init:      Metal KV buffer size =    48.00 MiB
+[2024-09-21 18:01:36.945] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: KV self size  =   48.00 MiB, K (f16):   24.00 MiB, V (f16):   24.00 MiB
+[2024-09-21 18:01:36.945] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU  output buffer size =     0.58 MiB
+[2024-09-21 18:01:36.945] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:      Metal compute buffer size =    18.66 MiB
+[2024-09-21 18:01:36.945] [info] [WASI-NN] llama.cpp: llama_new_context_with_model:        CPU compute buffer size =     0.61 MiB
+[2024-09-21 18:01:36.945] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph nodes  = 846
+[2024-09-21 18:01:36.945] [info] [WASI-NN] llama.cpp: llama_new_context_with_model: graph splits = 2
+[2024-09-21 18:01:37.943] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:37.943] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:37.943] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:37.944] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:37.944] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:37.946] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:37.946] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":"\n","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912897,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:37.948] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:37.967] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:37.967] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:37.967] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:37.967] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:37.968] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:37.969] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:37.969] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":"The","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912897,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:37.969] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:37.991] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:37.991] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:37.991] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:37.992] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:37.992] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:37.993] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:37.993] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" following","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912897,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:37.994] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.016] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.017] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.017] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.017] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.017] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.018] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.018] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" projects","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.018] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.039] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.039] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.039] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.039] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.039] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.040] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.040] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" can","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.040] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.059] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.059] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.060] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.060] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.060] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.060] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.061] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" be","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.061] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.082] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.082] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.082] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.083] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.083] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.084] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.084] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" related","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.084] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.107] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.107] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.107] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.107] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.108] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.108] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.109] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" to","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.109] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.131] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.131] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.131] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.132] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.132] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.133] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.133] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" the","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.133] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.155] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.156] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.156] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.156] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.156] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.157] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.157] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" topics","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.157] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.178] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.179] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.179] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.179] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.179] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.180] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.180] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" you","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.181] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.200] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.200] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.200] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.200] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.200] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.201] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.201] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" provided","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.201] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.222] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.222] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.222] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.223] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.223] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.224] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.224] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":":","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.224] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.245] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.245] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.245] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.245] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.246] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.246] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.246] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" AI","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.247] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.268] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.268] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.268] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.268] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.269] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.270] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.270] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":"-powered","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.270] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.291] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.291] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.291] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.292] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.292] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.293] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.293] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" Language","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.298] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.318] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.318] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.318] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.318] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.318] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.319] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.319] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" Translation","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.319] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.339] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.339] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.340] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.340] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.340] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.341] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.341] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":",","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.341] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.364] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.364] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.365] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.365] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.365] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.366] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.366] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" Autonomous","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.366] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.387] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.387] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.387] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.387] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.388] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.389] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.389] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" Drone","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.389] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.411] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.411] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.411] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.412] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.412] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.413] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.413] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" Delivery","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.413] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.433] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.433] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.433] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.433] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.433] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.434] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.434] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" System","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.434] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.455] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.456] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.456] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.456] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.456] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.457] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.458] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":",","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.458] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.480] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.480] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.480] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.480] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.481] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.481] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.482] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" Blockchain","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.482] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.503] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.503] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.504] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.504] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.504] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.505] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.505] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":"-based","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.505] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.529] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.529] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.529] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.529] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.529] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.530] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.530] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" Voting","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.530] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.550] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.551] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.551] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.551] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.551] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.552] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.553] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" System","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.553] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.574] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.574] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.574] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.574] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.574] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.575] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.576] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":".","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.576] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.579] [info] [WASI-NN] GGML backend: EOS token found
+[2024-09-21 18:01:38.579] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:243: Get token info from the model named Qwen2-0.5B-Instruct-Q5_K_M.
+[2024-09-21 18:01:38.579] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:169: Get the output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M
+[2024-09-21 18:01:38.579] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:187: Output buffer size: 98
+[2024-09-21 18:01:38.579] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:282: prompt tokens: 421, completion tokens: 29
+[2024-09-21 18:01:38.580] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2845: token_info: 421 prompt tokens, 29 completion tokens
+[2024-09-21 18:01:38.580] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.580] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk","usage":{"prompt_tokens":421,"completion_tokens":29,"total_tokens":450}}
+
+
+[2024-09-21 18:01:38.581] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.598] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.599] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.599] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.599] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.599] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.600] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.600] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" These","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.600] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.618] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.619] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.619] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.619] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.619] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.620] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.620] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" technologies","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.620] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.640] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.640] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.640] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.641] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.641] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.642] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.642] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" can","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.650] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.669] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.669] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.670] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.670] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.670] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.671] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.671] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" improve","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.671] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.690] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.690] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.690] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.690] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.691] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.691] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.691] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" efficiency","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.692] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.709] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.709] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.709] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.710] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.710] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.710] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.710] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" by","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.711] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.731] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.732] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.732] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.732] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.732] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.733] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.733] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" autom","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.734] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.755] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.755] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.755] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.755] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.755] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.756] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.756] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":"ating","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.756] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.775] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.775] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.776] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.776] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.776] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.777] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.777] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" tasks","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.778] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.799] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.799] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.799] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.800] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.800] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.801] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.801] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" in","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.801] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.823] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.823] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.824] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.824] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.824] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.825] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.825] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" logistics","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.826] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.846] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.846] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.846] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.846] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.846] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.847] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.847] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" or","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.847] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.868] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.868] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.868] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.868] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.869] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.870] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.870] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" delivery","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.870] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.891] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.891] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.891] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.892] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.893] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.894] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.894] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":" systems","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.894] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2718: Compute the chat stream chunk successfully.
+[2024-09-21 18:01:38.915] [info] llama_core::utils in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/utils.rs:198: Get output buffer generated by the model named Qwen2-0.5B-Instruct-Q5_K_M in the stream mode.
+[2024-09-21 18:01:38.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2724: retrieved the output buffer
+[2024-09-21 18:01:38.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2775: decoded the output buffer
+[2024-09-21 18:01:38.915] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2809: created chat completion chunk
+[2024-09-21 18:01:38.916] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.916] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: {"id":"c19bb2ca-6c85-4a5f-b9d9-f8a35bdbab93","choices":[{"index":0,"delta":{"content":".","role":"assistant"},"logprobs":null,"finish_reason":null}],"created":1726912898,"model":"Qwen2-0.5B-Instruct-Q5_K_M","system_fingerprint":"fp_44709d6fcb","object":"chat.completion.chunk"}
+
+
+[2024-09-21 18:01:38.916] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.920] [info] [WASI-NN] GGML backend: EOS token found
+[2024-09-21 18:01:38.921] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:4267: Return the chat stream chunk!
+[2024-09-21 18:01:38.921] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: data: [DONE]
+
+
+[2024-09-21 18:01:38.921] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2675: Compute the chat stream chunk.
+[2024-09-21 18:01:38.921] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2682: Return the chat stream chunk!
+[2024-09-21 18:01:38.921] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2639: next item: [GGML] End of sequence
+[2024-09-21 18:01:38.922] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2465: Clean up the context of the stream work environment.
+[2024-09-21 18:01:38.922] [info] [WASI-NN] llama.cpp: 
+[2024-09-21 18:01:38.922] [info] [WASI-NN] llama.cpp: llama_print_timings:        load time =  736223.52 ms
+[2024-09-21 18:01:38.922] [info] [WASI-NN] llama.cpp: llama_print_timings:      sample time =     129.27 ms /    45 runs   (    2.87 ms per token,   348.12 tokens per second)
+[2024-09-21 18:01:38.922] [info] [WASI-NN] llama.cpp: llama_print_timings: prompt eval time =     974.32 ms /   421 tokens (    2.31 ms per token,   432.10 tokens per second)
+[2024-09-21 18:01:38.922] [info] [WASI-NN] llama.cpp: llama_print_timings:        eval time =     794.52 ms /    43 runs   (   18.48 ms per token,    54.12 tokens per second)
+[2024-09-21 18:01:38.922] [info] [WASI-NN] llama.cpp: llama_print_timings:       total time =  737224.75 ms /   464 tokens
+[2024-09-21 18:01:38.922] [info] [WASI-NN] llama.cpp: ggml_metal_free: deallocating
+[2024-09-21 18:01:38.929] [info] llama_core::chat in /home/runner/.cargo/git/checkouts/llamaedge-4f9ea6368fc01861/6a4103b/crates/llama-core/src/chat.rs:2617: Cleanup done!
+[2024-09-21 18:29:24.825] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:53728, local_addr: 0.0.0.0:8080
+[2024-09-21 18:29:24.828] [info] rag_api_server in src/main.rs:498: method: GET, http_version: HTTP/1.1
+[2024-09-21 18:29:24.828] [info] rag_api_server in src/main.rs:499: endpoint: /v1/chat/completions
+[2024-09-21 18:29:24.829] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:189: Handling the coming rag query request
+[2024-09-21 18:29:24.829] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:212: Prepare the chat completion request.
+[2024-09-21 18:29:24.829] [error] rag_api_server::backend::ggml in src/backend/ggml.rs:232: Fail to deserialize chat completion request: EOF while parsing a value at line 1 column 0
+[2024-09-21 18:29:24.829] [error] rag_api_server::backend::ggml in src/backend/ggml.rs:235: raw data:
+[]
+[2024-09-21 18:29:24.830] [error] rag_api_server::error in src/error.rs:43: 400 Bad Request: Fail to deserialize chat completion request: EOF while parsing a value at line 1 column 0
+[2024-09-21 18:29:24.830] [error] rag_api_server in src/main.rs:524: response_version: HTTP/1.1
+[2024-09-21 18:29:24.831] [error] rag_api_server in src/main.rs:526: response_body_size: 106
+[2024-09-21 18:29:24.831] [error] rag_api_server in src/main.rs:528: response_status: 400
+[2024-09-21 18:29:24.831] [error] rag_api_server in src/main.rs:530: response_is_success: false
+[2024-09-21 18:29:24.831] [error] rag_api_server in src/main.rs:532: response_is_client_error: true
+[2024-09-21 18:29:24.831] [error] rag_api_server in src/main.rs:534: response_is_server_error: false
+[2024-09-21 19:52:31.772] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:55713, local_addr: 0.0.0.0:8080
+[2024-09-21 19:52:31.777] [info] rag_api_server in src/main.rs:498: method: GET, http_version: HTTP/1.1
+[2024-09-21 19:52:31.777] [info] rag_api_server in src/main.rs:499: endpoint: /v1/info
+[2024-09-21 19:52:31.778] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1677: Handling the coming server info request.
+[2024-09-21 19:52:31.780] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1724: Send the server info response.
+[2024-09-21 19:52:31.780] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 19:52:31.780] [info] rag_api_server in src/main.rs:517: response_body_size: 811
+[2024-09-21 19:52:31.780] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 19:52:31.781] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 19:52:32.183] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:55718, local_addr: 0.0.0.0:8080
+[2024-09-21 19:52:32.183] [info] rag_api_server in src/main.rs:498: method: GET, http_version: HTTP/1.1
+[2024-09-21 19:52:32.183] [info] rag_api_server in src/main.rs:499: endpoint: /v1/info
+[2024-09-21 19:52:32.183] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1677: Handling the coming server info request.
+[2024-09-21 19:52:32.184] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1724: Send the server info response.
+[2024-09-21 19:52:32.184] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 19:52:32.184] [info] rag_api_server in src/main.rs:517: response_body_size: 811
+[2024-09-21 19:52:32.184] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 19:52:32.184] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 19:55:57.040] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:55910, local_addr: 0.0.0.0:8080
+[2024-09-21 20:07:49.091] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:56237, local_addr: 0.0.0.0:8080
+[2024-09-21 20:07:49.093] [info] rag_api_server in src/main.rs:498: method: GET, http_version: HTTP/1.1
+[2024-09-21 20:07:49.094] [info] rag_api_server in src/main.rs:499: endpoint: /v1/info
+[2024-09-21 20:07:49.094] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1677: Handling the coming server info request.
+[2024-09-21 20:07:49.095] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1724: Send the server info response.
+[2024-09-21 20:07:49.095] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 20:07:49.095] [info] rag_api_server in src/main.rs:517: response_body_size: 811
+[2024-09-21 20:07:49.095] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 20:07:49.095] [info] rag_api_server in src/main.rs:521: response_is_success: true
+[2024-09-21 20:13:23.985] [info] rag_api_server in src/main.rs:443: remote_addr: 0.0.0.0:56914, local_addr: 0.0.0.0:8080
+[2024-09-21 20:13:23.990] [info] rag_api_server in src/main.rs:498: method: GET, http_version: HTTP/1.1
+[2024-09-21 20:13:23.990] [info] rag_api_server in src/main.rs:499: endpoint: /v1/info
+[2024-09-21 20:13:23.991] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1677: Handling the coming server info request.
+[2024-09-21 20:13:23.993] [info] rag_api_server::backend::ggml in src/backend/ggml.rs:1724: Send the server info response.
+[2024-09-21 20:13:23.994] [info] rag_api_server in src/main.rs:515: response_version: HTTP/1.1
+[2024-09-21 20:13:23.994] [info] rag_api_server in src/main.rs:517: response_body_size: 811
+[2024-09-21 20:13:23.994] [info] rag_api_server in src/main.rs:519: response_status: 200
+[2024-09-21 20:13:23.994] [info] rag_api_server in src/main.rs:521: response_is_success: true
