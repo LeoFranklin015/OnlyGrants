@@ -10,6 +10,10 @@ import {
   ListboxOptions,
 } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { useWriteContract } from "wagmi";
+import { parseEther } from "viem";
+import contract from "../utilities/contract.json";
+
 
 import AppLayout from "@/layouts/AppLayout";
 
@@ -29,14 +33,41 @@ export default function CreateRound() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const createRound = (e: { preventDefault: () => void }) => {
+  const { writeContract } = useWriteContract();
+
+  const handleCreateRound = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setCreateRoundLoading(true);
-    console.log("Creating round...");
+
+    // Get form data
+    const formData = new FormData(e.currentTarget);
+    const roundData = {
+      projectName: formData.get('projectName') as string,
+      chain: selectedChain.name,
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+      matchingPool: formData.get('matchingPool') as string,
+      description: formData.get('description') as string,
+    };
+
     try {
-      // TODO: Make contract call to create chain
+      const result = await writeContract({
+        address: contract.address as `0x${string}`, // Replace with the actual contract address
+        abi: contract.abi,
+        functionName: "createRound",
+        args: [
+          parseEther(roundData.matchingPool), // Convert to wei
+          roundData.description,
+          BigInt(7 * 24 * 60 * 60), // Voting period in seconds (e.g., 7 days)
+        ],
+        value: parseEther(roundData.matchingPool), // Send the matching pool amount as value
+      });
+
+      console.log("Round created:", result);
+      // Handle success (e.g., show a success message, redirect to the round page)
     } catch (error) {
-      console.error(error);
+      console.error("Error creating round:", error);
+      // Handle error (e.g., show an error message to the user)
     } finally {
       setCreateRoundLoading(false);
     }
@@ -58,23 +89,23 @@ export default function CreateRound() {
             </div>
 
             <form
-              onSubmit={createRound}
+              onSubmit={handleCreateRound}
               className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
             >
               <div className="px-4 py-6 sm:p-8">
                 <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="projectName"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Project Name</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
+                        id="projectName"
+                        name="projectName"
+                        type="text"
                         placeholder="What's the project name?"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
@@ -180,17 +211,17 @@ export default function CreateRound() {
 
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="email"
+                      htmlFor="matchingPool"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Matching Pool (USDC)</h1>
                     </label>
                     <div className="mt-2">
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="What's the project name?"
+                        id="matchingPool"
+                        name="matchingPool"
+                        type="number"
+                        placeholder="Enter matching pool amount"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                       />
                     </div>
@@ -198,15 +229,15 @@ export default function CreateRound() {
 
                   <div className="col-span-full">
                     <label
-                      htmlFor="about"
+                      htmlFor="description"
                       className="block text-xl font-medium leading-6 text-gray-900"
                     >
                       <h1>Round Description</h1>
                     </label>
                     <div className="mt-2">
                       <textarea
-                        id="about"
-                        name="about"
+                        id="description"
+                        name="description"
                         rows={3}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6"
                         defaultValue={""}

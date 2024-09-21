@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-// import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { NearContext } from "@/utilities/context";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { NearContext } from "@/utilities/context";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -15,21 +15,23 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const { openConnectModal } = useConnectModal();
 
-  const { signedAccountId, wallet } = useContext(NearContext);
-  const [action, setAction] = useState(() => {});
-  const [label, setLabel] = useState("Loading...");
+  // const { signedAccountId, wallet } = useContext(NearContext);
+  // const [action, setAction] = useState(() => {});
+  // const [label, setLabel] = useState("Loading...");
 
   useEffect(() => {
-    if (!wallet) return;
+    // if (!wallet) return;
 
-    if (signedAccountId) {
-      setAction(() => wallet.signOut);
-      setLabel(`Logout ${signedAccountId}`);
-    } else {
-      setAction(() => wallet.signIn);
-      setLabel("Login");
-    }
-  }, [signedAccountId, wallet]);
+    // if (signedAccountId) {
+    //   setAction(() => wallet.signOut);
+    //   setLabel(`Logout ${signedAccountId}`);
+    // } else {
+    //   setAction(() => wallet.signIn);
+    //   setLabel("Login");
+    // }
+  }, [
+
+  ]);
 
   return (
     <header className="fixed w-full bg-white/70 top-0 z-50">
@@ -67,7 +69,7 @@ const Header: React.FC = () => {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-2">
           {/* Rainbowkit custom connect button start */}
-          {/* <ConnectButton.Custom>
+          <ConnectButton.Custom>
             {({
               account,
               chain,
@@ -135,24 +137,24 @@ const Header: React.FC = () => {
                 </div>
               );
             }}
-          </ConnectButton.Custom> */}
+          </ConnectButton.Custom>
           {/* Rainbowkit custom connect button end */}
 
           {/* Near Login Button start */}
           <button
-            onClick={action}
+
             type="button"
             className="rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
-            {label}
+            Login
           </button>
           {/* Near Login Button end */}
 
           <Link
-            href="/create-project"
+            href="/create-round"
             className="inline-flex gap-x-2 rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
-            Create Project
+            Create Round
             <PlusIcon aria-hidden="true" className="-mr-0.5 h-5 w-5" />
           </Link>
         </div>

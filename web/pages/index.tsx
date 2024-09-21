@@ -2,9 +2,6 @@
 "use client";
 
 import AppLayout from "@/layouts/AppLayout";
-import { NearContext } from "@/utilities/context";
-import { useContext } from "react";
-import Nouns from "@/public/homePage.png";
 
 const stats = [
   { label: "Transactions every 24 hours", value: "44 million" },
@@ -73,7 +70,6 @@ const blogPosts = [
 ];
 
 export default function Home() {
-  const { signedAccountId } = useContext(NearContext);
 
   return (
     <AppLayout title="OnlyGrants">

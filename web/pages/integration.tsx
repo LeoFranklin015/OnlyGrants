@@ -104,9 +104,9 @@ export default function Rounds() {
           console.log("started");
           await functionCall(
             address,
-            "0x6c50c6fab41b878e45c08d99223ffb494a6c5328",
-            "store",
-            { num: 2 },
+            "0x906a57aCa067178e76e6eBDF4C7b26CBcAEC0Edd",
+            "createRound",
+            { ma: 2, m: "hello", vp: 1 },
             [],
             "flow",
             wallet
