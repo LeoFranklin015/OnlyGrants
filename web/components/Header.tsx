@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { NearContext } from "@/utilities/context";
+import WorldCoinConnect from "./WorldConnect";
 
+
+// import { NearContext } from "@/utilities/context";
+import { useEffect, } from "react";
 const navigation = [
   { name: "Projects", href: "/projects" },
   { name: "Explore Rounds", href: "/rounds" },
@@ -16,8 +19,8 @@ const Header: React.FC = () => {
   // const { openConnectModal } = useConnectModal();
 
   // const { signedAccountId, wallet } = useContext(NearContext);
-  const [action, setAction] = useState(() => {});
-  const [label, setLabel] = useState("Loading...");
+  // const [action, setAction] = useState(() => { });
+  // const [label, setLabel] = useState("Loading...");
 
   // useEffect(() => {
   //   if (!wallet) return;
@@ -31,6 +34,14 @@ const Header: React.FC = () => {
   //   }
   // }, [signedAccountId, wallet]);
 
+  const [worldcoinVerified, setWorldcoinVerified] = useState(false);
+
+  useEffect(() => {
+    const signature = localStorage.getItem("worldcoinSignature");
+    if (signature) {
+      setWorldcoinVerified(true);
+    }
+  }, [worldcoinVerified]);
   return (
     <header className="fixed w-full bg-white/70 top-0 z-10">
       <nav
@@ -54,7 +65,11 @@ const Header: React.FC = () => {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        {!worldcoinVerified ? (
+          <div className=" justify-center items-center">
+            <WorldCoinConnect onAction={setWorldcoinVerified} />
+          </div>
+        ) : <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -64,7 +79,15 @@ const Header: React.FC = () => {
               {item.name}
             </Link>
           ))}
+          <Link
+            href="/create-project"
+            className="inline-flex gap-x-2 rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+          >
+            Create Project
+            <PlusIcon aria-hidden="true" className="-mr-0.5 h-5 w-5" />
+          </Link>
         </div>
+        }
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-2">
           {/* Rainbowkit custom connect button start */}
           <ConnectButton.Custom>
@@ -148,13 +171,7 @@ const Header: React.FC = () => {
           </button> */}
           {/* Near Login Button end */}
 
-          <Link
-            href="/create-project"
-            className="inline-flex gap-x-2 rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-          >
-            Create Project
-            <PlusIcon aria-hidden="true" className="-mr-0.5 h-5 w-5" />
-          </Link>
+
         </div>
       </nav>
       <Dialog

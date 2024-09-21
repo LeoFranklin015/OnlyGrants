@@ -60,7 +60,7 @@ export default function WorldCoinConnect({
               className="font-bold text-lg pt-1 text-zinc-600 cursor-pointer"
               onClick={open}
             >
-              World ID Login
+              Log in with Worldcoin
             </div>
           )}
         </IDKitWidget>

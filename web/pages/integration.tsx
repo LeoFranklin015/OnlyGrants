@@ -12,7 +12,7 @@ import { getGasPrice } from "@/utilities/getGasPrice";
 import { getProvider } from "@/utilities/getProvider";
 import { getBalance } from "@/utilities/getBalance";
 import { functionCall } from "@/utilities/functionCall";
-import WorldCoinConnect from "./components/WorldConnect";
+import WorldCoinConnect from "../components/WorldConnect";
 
 export default function Rounds() {
   const { signedAccountId, wallet } = useContext(NearContext);
