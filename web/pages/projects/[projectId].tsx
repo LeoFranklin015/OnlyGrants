@@ -129,7 +129,7 @@ export default function Project() {
   }, [router.query.projectId]);
 
   return (
-    <AppLayout title="Project">
+    <AppLayout title={router.query.projectId || ""}>
       <div className="w-full">
         <div>
           <div>

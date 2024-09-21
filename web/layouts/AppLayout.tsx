@@ -4,7 +4,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Head from "next/head";
 
-const AppLayout: React.FC<{ children: React.ReactNode; title: string }> = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AppLayout: React.FC<{ children: React.ReactNode; title: any }> = ({
   children,
   title,
 }) => {

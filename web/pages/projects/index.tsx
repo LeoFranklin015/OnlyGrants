@@ -2,6 +2,7 @@
 "use client";
 
 import AppLayout from "@/layouts/AppLayout";
+import Link from "next/link";
 
 const projects = [
   {
@@ -102,78 +103,63 @@ const projects = [
 ];
 
 const Card = ({
-  title,
+  name,
   description,
-  imageUrl,
+  profileImageUrl,
+  coverImageUrl,
 }: {
-  title: string | undefined;
+  name: string | undefined;
   description: string | undefined;
-  imageUrl: string | undefined;
+  profileImageUrl: string | undefined;
+  coverImageUrl: string | undefined;
 }) => (
-  <article className="flex flex-col items-start justify-between border border-gray-200 rounded-xl">
-    <div className="relative w-full">
-      <img
-        alt=""
-        src={imageUrl}
-        className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-      />
-      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-    </div>
-    <div className="max-w-xl p-8">
-      <div className="flex items-center gap-x-4 text-xs">
-        {/* <time dateTime={.datetime} className="text-gray-500">
-          {post.date}
-        </time> */}
-        <a
-          href=""
-          className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-        >
-          {title}
-        </a>
-      </div>
-      <div className="group relative">
-        <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-          <a href="">
-            <span className="absolute inset-0" />
-            {title}
-          </a>
-        </h3>
-        <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-          {description}
-        </p>
-      </div>
-      <div className="relative mt-8 flex items-center gap-x-4">
-        <img
-          alt=""
-          src={imageUrl}
-          className="h-10 w-10 rounded-full bg-gray-100"
-        />
-        <div className="text-sm leading-6">
-          <p className="font-semibold text-gray-900">
-            <a href="/">
-              <span className="absolute inset-0" />
-              {title}
-            </a>
-          </p>
-          <p className="text-gray-600">{title}</p>
+  <div className="rounded-3xl bg-white shadow-lg overflow-hidden a > { } w-full hover:opacity-90 transition hover:shadow-none">
+    <Link
+      target="_blank"
+      href={`/projects/${name}`}
+      data-track-event="project-card"
+    >
+      <div className="w-full relative">
+        <div>
+          <img
+            className="bg-black h-[120px] w-full object-cover rounded-t"
+            src={coverImageUrl}
+            alt="Project Banner"
+          />
         </div>
       </div>
-    </div>
-  </article>
+      <div className="p-4 space-y-4 relative">
+        <img
+          className="object-cover rounded-full border-solid border-2 border-white absolute -top-[24px] "
+          src={profileImageUrl}
+          alt="Project Banner"
+          style={{ height: 48, width: 48 }}
+        />
+        <div className="truncate mt-4">{name}</div>
+        <div className="text-sm md:text-base text-ellipsis line-clamp-4 text-grey-400 leading-relaxed min-h-[96px]">
+          <div className="text-sm line-clamp-4">{description}</div>
+        </div>
+      </div>
+    </Link>
+  </div>
 );
 
 export default function ProjectsIndex() {
   return (
     <AppLayout title="Projects">
-      <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <Card
-            key={index}
-            title={project.title}
-            description={project.description}
-            imageUrl={project.imageUrl}
-          />
-        ))}
+      <div className="my-10">
+        <h1 className="text-5xl font-bold">Explore Projects</h1>
+        <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <Card
+              key={index}
+              name={project.title}
+              description={project.description}
+              profileImageUrl={project.imageUrl}
+              coverImageUrl={project.imageUrl}
+            />
+          ))}
+        </div>
       </div>
     </AppLayout>
   );
