@@ -1,16 +1,15 @@
-'use client'
+"use client";
 
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import WorldCoinConnect from "./WorldConnect";
 
-
-// import { NearContext } from "@/utilities/context";
-import { useEffect, } from "react";
+import { NearContext } from "@/utilities/context";
+import { useEffect } from "react";
 const navigation = [
   { name: "Projects", href: "/projects" },
   { name: "Explore Rounds", href: "/rounds" },
@@ -20,21 +19,21 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const { openConnectModal } = useConnectModal();
 
-  // const { signedAccountId, wallet } = useContext(NearContext);
-  // const [action, setAction] = useState(() => { });
-  // const [label, setLabel] = useState("Loading...");
+  const { signedAccountId, wallet } = useContext(NearContext);
+  const [action, setAction] = useState(() => {});
+  const [label, setLabel] = useState("Loading...");
 
-  // useEffect(() => {
-  //   if (!wallet) return;
+  useEffect(() => {
+    if (!wallet) return;
 
-  //   if (signedAccountId) {
-  //     setAction(() => wallet.signOut);
-  //     setLabel(`Logout ${signedAccountId}`);
-  //   } else {
-  //     setAction(() => wallet.signIn);
-  //     setLabel("Login");
-  //   }
-  // }, [signedAccountId, wallet]);
+    if (signedAccountId) {
+      setAction(() => wallet.signOut);
+      setLabel(`Logout ${signedAccountId}`);
+    } else {
+      setAction(() => wallet.signIn);
+      setLabel("Login");
+    }
+  }, [signedAccountId, wallet]);
 
   const [worldcoinVerified, setWorldcoinVerified] = useState(false);
 
@@ -71,26 +70,26 @@ const Header: React.FC = () => {
           <div className=" justify-center items-center">
             <WorldCoinConnect onAction={setWorldcoinVerified} />
           </div>
-        ) : <div className="hidden items-center lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
+        ) : (
+          <div className="hidden items-center lg:flex lg:gap-x-12">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
+                {item.name}
+              </Link>
+            ))}
             <Link
-
-              key={item.name}
-              href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900"
+              href="/create-round"
+              className="inline-flex gap-x-2 rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
             >
-              {item.name}
+              Create Round
+              <PlusIcon aria-hidden="true" className="-mr-0.5 h-5 w-5" />
             </Link>
-          ))}
-          <Link
-            href="/create-round"
-            className="inline-flex gap-x-2 rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-          >
-            Create Round
-            <PlusIcon aria-hidden="true" className="-mr-0.5 h-5 w-5" />
-          </Link>
-        </div>
-        }
+          </div>
+        )}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-2">
           {/* Rainbowkit custom connect button start */}
           <ConnectButton.Custom>
@@ -165,16 +164,14 @@ const Header: React.FC = () => {
           {/* Rainbowkit custom connect button end */}
 
           {/* Near Login Button start */}
-          {/* <button
+          <button
             onClick={action}
             type="button"
             className="rounded-full bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
           >
             {label}
-          </button> */}
+          </button>
           {/* Near Login Button end */}
-
-
         </div>
       </nav>
       <Dialog

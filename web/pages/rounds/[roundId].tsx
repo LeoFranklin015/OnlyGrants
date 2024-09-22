@@ -14,6 +14,8 @@ import { Transition } from "@headlessui/react";
 import axios from "axios";
 import Markdown from "react-markdown";
 import { ThreeDots } from "react-loader-spinner";
+import { useWriteContract } from "wagmi";
+import contract from "@/utilities/contract.json";
 
 interface Project {
   network: string;
@@ -90,6 +92,7 @@ export default function Round() {
   const [chatResponse, setChatResponse] = useState(null);
   const [gaiaLoading, setGaiaLoading] = useState(false);
   const [query, setQuery] = useState("");
+  const [finished, setFinished] = useState(false);
 
   const { roundId } = router.query;
 
@@ -102,6 +105,41 @@ export default function Round() {
       setGaiaLoading(false);
     } catch (error) {
       console.error("Error calling API:", error);
+    }
+  };
+  const {
+    writeContract,
+    isPending: isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useWriteContract();
+
+  const finalizeRoundPoll = async () => {
+    try {
+      writeContract({
+        address: contract.address as `0x${string}`, // Replace with the actual contract address
+        abi: contract.abi,
+        functionName: "finalizeRoundPoll",
+        args: [roundId],
+        // Send the matching pool amount as value
+      });
+    } catch (error) {
+      console.error("Error creating round:", error);
+    }
+  };
+
+  const distributeRound = async () => {
+    try {
+      writeContract({
+        address: contract.address as `0x${string}`, // Replace with the actual contract address
+        abi: contract.abi,
+        functionName: "distributeFunds",
+        args: [roundId],
+        // Send the matching pool amount as value
+      });
+    } catch (error) {
+      console.error("Error creating round:", error);
     }
   };
 
@@ -200,17 +238,46 @@ export default function Round() {
 
       <div className="my-10 w-full border-b border-gray-200" />
 
-      <div className="flex justify-center">
-        <div className="p-8 rounded-lg text-sm bg-gray-200 text-gray-600 text-center">
-          <div>
-            Applications close in{" "}
-            <span className="font-semibold">71 days, 16 minutes!</span>
+      {finished ? (
+        <div className="flex justify-center">
+          <div className="p-8 rounded-lg text-sm bg-gray-200 text-gray-600 text-center">
+            <div>
+              Round has ended.
+              <span className="font-semibold">71 days, 16 minutes!</span>
+            </div>
+            <div className="gap-2 flex">
+              <button
+                className="mt-5 bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+                onClick={async () => await finalizeRoundPoll()}
+              >
+                Finalize Round
+              </button>
+
+              <button
+                className="mt-5 bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+                onClick={async () => await distributeRound()}
+              >
+                Distribute Round
+              </button>
+            </div>
           </div>
-          <Link href={`/create-project?roundId=${roundId}`} className="mt-5 bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium">
-            Apply now!
-          </Link>
         </div>
-      </div>
+      ) : (
+        <div className="flex justify-center">
+          <div className="p-8 rounded-lg text-sm bg-gray-200 text-gray-600 text-center">
+            <div>
+              Applications close in{" "}
+              <span className="font-semibold">71 days, 16 minutes!</span>
+            </div>
+            <Link
+              href={`/create-project?roundId=${roundId}`}
+              className="mt-5 bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium"
+            >
+              Apply now!
+            </Link>
+          </div>
+        </div>
+      )}
 
       <div className="my-10 w-full border-b border-gray-200" />
 

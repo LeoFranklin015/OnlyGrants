@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Label,
   Listbox,
@@ -10,6 +10,10 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { RotatingLines } from "react-loader-spinner";
 import AppLayout from "@/layouts/AppLayout";
+import { functionCall } from "@/utilities/functionCall";
+import { generateAddress } from "@/utilities/kdf";
+import { Wallet } from "@/utilities/near";
+import { NearContext } from "@/utilities/context";
 
 const chains = [
   { id: 1, name: "Polygon" },
@@ -31,6 +35,22 @@ export default function CreateProject() {
   const [teamSize, setTeamSize] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [createProjectLoading, setCreateProjectLoading] = useState(false);
+  const [address, setAddress] = useState("");
+  const { signedAccountId, wallet } = useContext(NearContext);
+
+  useEffect(() => {
+    const fetchAddress = async () => {
+      const address = await generateAddress(
+        "secp256k1:54hU5wcCmVUPFWLDALXMh1fFToZsVXrx9BbTbHzSfQq1Kd1rJZi52iPa4QQxo6s5TgjWqgpY8HamYuUDzG6fAaUq",
+        signedAccountId,
+        "ethereum-1",
+        "ethereum"
+      );
+      console.log(address);
+      setAddress(address.address as string);
+    };
+    fetchAddress();
+  }, [signedAccountId]);
 
   const createProject = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -53,6 +73,21 @@ export default function CreateProject() {
 
     try {
       // Call the contract to create the project
+      if (!wallet) {
+        console.error("Wallet is not defined");
+        setCreateProjectLoading(false);
+        return;
+      }
+
+      await functionCall(
+        address,
+        "0x906a57aCa067178e76e6eBDF4C7b26CBcAEC0Edd",
+        "applyForRound",
+        { roundId: 0, mmetadata: "hello" },
+        [],
+        "flow",
+        wallet
+      );
       console.log("Project created successfully.");
     } catch (error) {
       console.error("Error creating project:", error);

@@ -1,9 +1,9 @@
 export const ChainData = {
   flow: {
-    // RPCUrl: "https://testnet.evm.nodes.onflow.org",
-    // chainId: 545,
-    RPCUrl: "https://api.helium.fhenix.zone",
-    chainId: 8008135,
+    RPCUrl: "https://testnet.evm.nodes.onflow.org",
+    chainId: 545,
+    // RPCUrl: "https://api.helium.fhenix.zone",
+    // chainId: 8008135,
     currency: "FLOW",
   },
 };

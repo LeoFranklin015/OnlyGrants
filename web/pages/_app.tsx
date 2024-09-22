@@ -11,14 +11,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { config } from "@/utilities/wagmi";
 import { PopupProvider } from "@/utilities/projectContext";
-// import { NearContext } from "@/utilities/context";
-// import { NetworkId, HelloNearContract } from "@/utilities/config";
-// import { Wallet } from "@/utilities/near";
+import { NearContext } from "@/utilities/context";
+import { NetworkId, HelloNearContract } from "@/utilities/config";
+import { Wallet } from "@/utilities/near";
 
-// const wallet = new Wallet({
-//   networkId: NetworkId,
-//   createAccessKeyFor: HelloNearContract,
-// });
+const wallet = new Wallet({
+  networkId: NetworkId,
+  createAccessKeyFor: HelloNearContract,
+});
 
 const queryClient = new QueryClient();
 
@@ -30,10 +30,10 @@ export default function App({ Component, pageProps }: AppProps) {
     setReady(true);
   }, []);
 
-  // const [signedAccountId, setSignedAccountId] = useState("");
+  const [signedAccountId, setSignedAccountId] = useState("");
 
   useEffect(() => {
-    // wallet.startUp(setSignedAccountId);
+    wallet.startUp(setSignedAccountId);
   }, []);
 
   return (
@@ -42,11 +42,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>
             <RainbowKitProvider locale={locale}>
-              {/* <NearContext.Provider value={{ wallet, signedAccountId }}> */}
-              <PopupProvider>
-                <Component {...pageProps} />
-              </PopupProvider>
-              {/* </NearContext.Provider> */}
+              <NearContext.Provider value={{ wallet, signedAccountId }}>
+                <PopupProvider>
+                  <Component {...pageProps} />
+                </PopupProvider>
+              </NearContext.Provider>
             </RainbowKitProvider>
           </QueryClientProvider>
         </WagmiProvider>
