@@ -67,7 +67,7 @@ const Header: React.FC = () => {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        {worldcoinVerified ? (
+        {!worldcoinVerified ? (
           <div className=" justify-center items-center">
             <WorldCoinConnect onAction={setWorldcoinVerified} />
           </div>

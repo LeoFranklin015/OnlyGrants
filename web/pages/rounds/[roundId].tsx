@@ -1,5 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
+
+
 import { useRouter } from "next/router";
 import Link from "next/link";
 import AppLayout from "@/layouts/AppLayout";
@@ -9,11 +12,13 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { usePopup } from "@/utilities/projectContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import axios from "axios";
 import Markdown from "react-markdown";
 import { ThreeDots } from "react-loader-spinner";
+import contract from "../../utilities/contract.json";
+import { useReadContract } from "wagmi"
 
 interface Project {
   network: string;
@@ -105,12 +110,26 @@ export default function Round() {
     }
   };
 
-  return (
-    <AppLayout title={router.query.roundId}>
+  const { data, isLoading: isDataLoading } = useReadContract({
+    address: contract.address as `0x${string}`,
+    abi: contract.abi,
+    functionName: "rounds",
+    args: [roundId],
+  })
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
+
+  if (isDataLoading) {
+    return <div>Loading...</div>
+  } else {
+    return <AppLayout title={JSON.parse(data?.[2] as string)?.projectName}>
       <div className="flex items-center gap-x-2 mb-4">
         <div>
           <h1 className="text-4xl font-bold text-gray-900">
-            Public Good in The Metaverse | Summer Round
+            {JSON.parse(data?.[2] as string)?.projectName || "Public Good in The Metaverse | Summer Round"}
           </h1>
         </div>
         <span className="bg-primary-100 text-primary-600 text-sm px-3 py-2 font-semibold rounded-full">
@@ -182,7 +201,7 @@ export default function Round() {
         <div className="col-span-2 flex justify-between items-center mb-6">
           <div className="bg-gray-200 rounded-lg p-6">
             <span className="text-2xl font-semibold text-gray-900">
-              350,000 USDC
+              {JSON.parse(data?.[3] as string)?.matchingPool || "0"} USDC
             </span>
             <span className="mt-2 block text-base text-gray-900">
               Matching Pool
@@ -192,10 +211,7 @@ export default function Round() {
       </div>
 
       <p className="text-base text-gray-900 mb-6">
-        We are spotlighting initiatives that are advancing the Metaverse as a
-        Public Good. These projects focus on creating interoperable, open, and
-        decentralized dApps and experiences, dedicated to developing a truly
-        decentralized Metaverse built on open standards.
+        {JSON.parse(data?.[2] as string)?.description || "No description available"}
       </p>
 
       <div className="my-10 w-full border-b border-gray-200" />
@@ -360,7 +376,10 @@ export default function Round() {
       </div>
       {/* Chat popup end */}
     </AppLayout>
-  );
+  }
+
+
+
 }
 
 const Card: React.FC<Project> = ({

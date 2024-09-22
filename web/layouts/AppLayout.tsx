@@ -9,12 +9,12 @@ import {
   Transition,
 } from "@headlessui/react";
 import {
-  ChatBubbleLeftRightIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { CalendarIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
-
+import { useWriteContract } from "wagmi";
+import contract from "@/utilities/contract.json";
 import { EthLogo } from "@/utilities/EthLogo";
 import Link from "next/link";
 import { RotatingLines, ThreeDots } from "react-loader-spinner";
@@ -108,19 +108,36 @@ const AppLayout: React.FC<{ children: React.ReactNode; title: any }> = ({
       })
     );
   }, [currentTab]);
-
+  const { writeContract, isPending: isLoading, isSuccess, isError, error } = useWriteContract();
+  const [amount, setAmount] = useState(0);
   const contribute = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setContributeLoading(true);
     console.log("Creating project...");
     try {
       // TODO: Make contract call to contribute to project
+      writeContract({
+        address: contract.address as `0x${string}`, // Replace with the actual contract address
+        abi: contract.abi,
+        functionName: "donate",
+        args: [
+          BigInt(0), // roundId
+          BigInt(0), // projectId - replace with actual project ID
+          BigInt(amount), // amount - replace with actual amount
+        ],
+      });
     } catch (error) {
       console.error(error);
     } finally {
       setContributeLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (isError) {
+      alert(error.message);
+    }
+  }, [isError, error]);
 
   // Getting project data from OSO
   useEffect(() => {
@@ -311,151 +328,151 @@ const AppLayout: React.FC<{ children: React.ReactNode; title: any }> = ({
                           <div className="grid grid-cols-2">
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .activeDeveloperCount6Months && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Active Developers
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_codeMetricsByProjectV1[0]
-                                        .activeDeveloperCount6Months
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Active Developers
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_codeMetricsByProjectV1[0]
+                                          .activeDeveloperCount6Months
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .commitCount6Months && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Commits in the last 6 months
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_codeMetricsByProjectV1[0]
-                                        .commitCount6Months
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Commits in the last 6 months
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_codeMetricsByProjectV1[0]
+                                          .commitCount6Months
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .firstCommitDate && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  First Commit
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  {
-                                    projectOSOData.oso_codeMetricsByProjectV1[0]
-                                      .firstCommitDate
-                                  }
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    First Commit
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    {
+                                      projectOSOData.oso_codeMetricsByProjectV1[0]
+                                        .firstCommitDate
+                                    }
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .lastCommitDate && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Last Commit
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  {
-                                    projectOSOData.oso_codeMetricsByProjectV1[0]
-                                      .lastCommitDate
-                                  }
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Last Commit
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    {
+                                      projectOSOData.oso_codeMetricsByProjectV1[0]
+                                        .lastCommitDate
+                                    }
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .forkCount && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Fork Count
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_codeMetricsByProjectV1[0].forkCount
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Fork Count
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_codeMetricsByProjectV1[0].forkCount
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .repositoryCount && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Repository Count
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_codeMetricsByProjectV1[0]
-                                        .repositoryCount
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Repository Count
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_codeMetricsByProjectV1[0]
+                                          .repositoryCount
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .starCount && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Star Count
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_codeMetricsByProjectV1[0].starCount
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Star Count
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_codeMetricsByProjectV1[0].starCount
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_codeMetricsByProjectV1[0]
                               .contributorCount && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Contributors
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_codeMetricsByProjectV1[0]
-                                        .contributorCount
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Contributors
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_codeMetricsByProjectV1[0]
+                                          .contributorCount
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
                           </div>
                         )}
                       </div>
@@ -471,163 +488,163 @@ const AppLayout: React.FC<{ children: React.ReactNode; title: any }> = ({
                           <div className="grid grid-cols-2">
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .activeContractCount90Days && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Active Contract Count (90 Days)
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .activeContractCount90Days
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Active Contract Count (90 Days)
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .activeContractCount90Days
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .addressCount && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Address Count
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .addressCount
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Address Count
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .addressCount
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .addressCount90Days && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Address Count (90 Days)
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .addressCount90Days
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Address Count (90 Days)
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .addressCount90Days
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .daysSinceFirstTransaction && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Days since last Transaction
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .daysSinceFirstTransaction
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Days since last Transaction
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .daysSinceFirstTransaction
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .gasFeesSum && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Gas Fees Sum
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .gasFeesSum
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Gas Fees Sum
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .gasFeesSum
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .returningAddressCount90Days && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Returning Address Count (90 Days)
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .returningAddressCount90Days
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Returning Address Count (90 Days)
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .returningAddressCount90Days
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .transactionCount && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Transaction Count
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .transactionCount
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Transaction Count
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .transactionCount
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
                             {projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .transactionCount6Months && (
-                              <div>
-                                <h1 className="mt-5 text-base font-light text-gray-500">
-                                  Transaction Count (6 Months)
-                                </h1>
-                                <div className="mt-1 text-3xl font-medium">
-                                  <NumericFormat
-                                    value={
-                                      projectOSOData
-                                        .oso_onchainMetricsByProjectV1[0]
-                                        .transactionCount6Months
-                                    }
-                                    displayType="text"
-                                    thousandSeparator=","
-                                  />
+                                <div>
+                                  <h1 className="mt-5 text-base font-light text-gray-500">
+                                    Transaction Count (6 Months)
+                                  </h1>
+                                  <div className="mt-1 text-3xl font-medium">
+                                    <NumericFormat
+                                      value={
+                                        projectOSOData
+                                          .oso_onchainMetricsByProjectV1[0]
+                                          .transactionCount6Months
+                                      }
+                                      displayType="text"
+                                      thousandSeparator=","
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
                           </div>
                         )}
                       </div>
@@ -661,6 +678,31 @@ const AppLayout: React.FC<{ children: React.ReactNode; title: any }> = ({
                         </section>
 
                         <div className="mt-6">
+                          <div className="mb-4">
+                            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
+                              Contribution Amount
+                            </label>
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span className="text-gray-500 sm:text-sm">$</span>
+                              </div>
+                              <input
+                                type="number"
+                                name="amount"
+                                id="amount"
+                                className="focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                                placeholder="0.00"
+                                aria-describedby="amount-currency"
+                                value={amount}
+                                onChange={(e) => setAmount(Number(e.target.value))}
+                              />
+                              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <span className="text-gray-500 sm:text-sm" id="amount-currency">
+                                  USD
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                           <button
                             type="submit"
                             onClick={contribute}
@@ -668,7 +710,7 @@ const AppLayout: React.FC<{ children: React.ReactNode; title: any }> = ({
                           >
                             {contributeLoading ? (
                               <>
-                                <span>Creating Project</span>
+                                <span>Donating</span>
                                 <RotatingLines
                                   visible={true}
                                   width="20"

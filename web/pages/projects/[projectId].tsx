@@ -15,6 +15,8 @@ import { RotatingLines } from "react-loader-spinner";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { NumericFormat } from "react-number-format";
+import { useWriteContract } from "wagmi";
+import contract from "@/utilities/contract.json";
 
 const profile = {
   name: "Ricardo Cooper",
@@ -99,12 +101,24 @@ export default function Project() {
     );
   }, [currentTab]);
 
+  const { writeContract, isPending: isLoading, isSuccess, isError, error } = useWriteContract();
+
+  const [amount, setAmount] = useState(0);
   const contribute = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setContributeLoading(true);
     console.log("Creating project...");
     try {
-      // TODO: Make contract call to contribute to project
+      writeContract({
+        address: contract.address as `0x${string}`, // Replace with the actual contract address
+        abi: contract.abi,
+        functionName: "donate",
+        args: [
+          BigInt(router.query.projectId as string), // roundId
+          BigInt(1), // projectId - replace with actual project ID
+          BigInt(100), // amount - replace with actual amount
+        ],
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -249,7 +263,7 @@ export default function Project() {
             {/* Project Details start */}
             {currentTab === "Project Details" && (
               <div>
-                <div className="mt-5 text-3xl font-medium">About</div>
+                <div className="mt-5 text-3xl font-medium">About ---</div>
                 <div className="mt-5 text-base">
                   The Metaverse Career website allows anyone to list and find a
                   job in not only the Metaverse but also the web3 ecosystem as a
@@ -289,7 +303,7 @@ export default function Project() {
                             projectOSOData.oso_codeMetricsByProjectV1[0]
                               .activeDeveloperCount6Months
                               ? projectOSOData.oso_codeMetricsByProjectV1[0]
-                                  .activeDeveloperCount6Months
+                                .activeDeveloperCount6Months
                               : 0
                           }
                           displayType="text"
@@ -308,7 +322,7 @@ export default function Project() {
                             projectOSOData.oso_codeMetricsByProjectV1[0]
                               .commitCount6Months
                               ? projectOSOData.oso_codeMetricsByProjectV1[0]
-                                  .commitCount6Months
+                                .commitCount6Months
                               : 0
                           }
                           displayType="text"
@@ -347,7 +361,7 @@ export default function Project() {
                             projectOSOData.oso_codeMetricsByProjectV1[0]
                               .forkCount
                               ? projectOSOData.oso_codeMetricsByProjectV1[0]
-                                  .forkCount
+                                .forkCount
                               : 0
                           }
                           displayType="text"
@@ -366,7 +380,7 @@ export default function Project() {
                             projectOSOData.oso_codeMetricsByProjectV1[0]
                               .repositoryCount
                               ? projectOSOData.oso_codeMetricsByProjectV1[0]
-                                  .repositoryCount
+                                .repositoryCount
                               : 0
                           }
                           displayType="text"
@@ -385,7 +399,7 @@ export default function Project() {
                             projectOSOData.oso_codeMetricsByProjectV1[0]
                               .starCount
                               ? projectOSOData.oso_codeMetricsByProjectV1[0]
-                                  .starCount
+                                .starCount
                               : 0
                           }
                           displayType="text"
@@ -404,7 +418,7 @@ export default function Project() {
                             projectOSOData.oso_codeMetricsByProjectV1[0]
                               .contributorCount
                               ? projectOSOData.oso_codeMetricsByProjectV1[0]
-                                  .contributorCount
+                                .contributorCount
                               : 0
                           }
                           displayType="text"
@@ -435,7 +449,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .activeContractCount90Days
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .activeContractCount90Days
+                                .activeContractCount90Days
                               : 0
                           }
                           displayType="text"
@@ -454,7 +468,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .addressCount
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .addressCount
+                                .addressCount
                               : 0
                           }
                           displayType="text"
@@ -473,7 +487,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .addressCount90Days
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .addressCount90Days
+                                .addressCount90Days
                               : 0
                           }
                           displayType="text"
@@ -492,7 +506,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .daysSinceFirstTransaction
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .daysSinceFirstTransaction
+                                .daysSinceFirstTransaction
                               : 0
                           }
                           displayType="text"
@@ -511,7 +525,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .gasFeesSum
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .gasFeesSum
+                                .gasFeesSum
                               : 0
                           }
                           displayType="text"
@@ -530,7 +544,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .returningAddressCount90Days
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .returningAddressCount90Days
+                                .returningAddressCount90Days
                               : 0
                           }
                           displayType="text"
@@ -549,7 +563,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .transactionCount
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .transactionCount
+                                .transactionCount
                               : 0
                           }
                           displayType="text"
@@ -568,7 +582,7 @@ export default function Project() {
                             projectOSOData.oso_onchainMetricsByProjectV1[0]
                               .transactionCount6Months
                               ? projectOSOData.oso_onchainMetricsByProjectV1[0]
-                                  .transactionCount6Months
+                                .transactionCount6Months
                               : 0
                           }
                           displayType="text"
@@ -609,6 +623,31 @@ export default function Project() {
                 </section>
 
                 <div className="mt-6">
+                  <div className="mb-4">
+                    <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
+                      Contribution Amount
+                    </label>
+                    <div className="mt-1 relative rounded-md shadow-sm">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span className="text-gray-500 sm:text-sm">$</span>
+                      </div>
+                      <input
+                        type="number"
+                        name="amount"
+                        id="amount"
+                        className="focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                        placeholder="0.00"
+                        aria-describedby="amount-currency"
+                        value={amount}
+                        onChange={(e) => setAmount(Number(e.target.value))}
+                      />
+                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <span className="text-gray-500 sm:text-sm" id="amount-currency">
+                          USD
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                   <button
                     type="submit"
                     onClick={contribute}
@@ -662,3 +701,4 @@ export default function Project() {
     </AppLayout>
   );
 }
+

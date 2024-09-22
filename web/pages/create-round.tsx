@@ -11,7 +11,6 @@ import {
 } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useWriteContract } from "wagmi";
-import { parseEther } from "viem";
 import contract from "../utilities/contract.json";
 import { toast } from 'react-toastify';
 
@@ -20,15 +19,17 @@ import AppLayout from "@/layouts/AppLayout";
 import "react-datepicker/dist/react-datepicker.css";
 
 const chains = [
-  { id: 1, name: "Polygon" },
-  { id: 2, name: "Mainnet" },
-  { id: 3, name: "Flow testnet" },
-  { id: 4, name: "Linea Sepolia" },
-  { id: 5, name: "Rootstock testnet" },
+  { id: 1, name: "FHEnix" },
+  { id: 2, name: "Morph" },
+  // { id: 1, name: "Polygon" },
+  // { id: 2, name: "Mainnet" },
+  // { id: 3, name: "Flow testnet" },
+  // { id: 4, name: "Linea Sepolia" },
+  // { id: 5, name: "Rootstock testnet" },
 ];
 
 export default function CreateRound() {
-  const [selectedChain, setSelectedChain] = useState(chains[3]);
+  const [selectedChain, setSelectedChain] = useState(chains[1]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -57,7 +58,7 @@ export default function CreateRound() {
         functionName: "createRound",
         args: [
           roundData.matchingPool,
-          roundData.description,
+          JSON.stringify(roundData),
           BigInt(7 * 24 * 60 * 60), // Voting period in seconds (e.g., 7 days)
         ],
         value: BigInt(roundData.matchingPool), // Send the matching pool amount as value

@@ -251,18 +251,14 @@ const RoundCard = ({
     args: [id],
   })
 
-
-
-
   useEffect(() => {
     console.log(data)
   }, [data])
 
 
-  return isLoading ? <div>Loading...</div> : <div><div className="rounded-3xl bg-white shadow-lg overflow-hidden a > { hover:opacity-90 transition hover:shadow-none } w-full">
+  return isLoading && !data ? <div>Loading...</div> : <div><div className="rounded-3xl bg-white shadow-lg overflow-hidden a > { hover:opacity-90 transition hover:shadow-none } w-full">
     <Link
-      target="_blank"
-      href={`/create-project/${id}`}
+      href={`/rounds/${id}`}
       data-testid="round-card"
       data-track-event="round-card"
       rel="noreferrer"
@@ -283,13 +279,13 @@ const RoundCard = ({
           color="green"
           className="font-mono text-xs text-gray-900 whitespace-nowrap inline-flex max-w-full w-fit items-center justify-center px-2 py-1.5 bg-green-100 rounded-full absolute top-3 right-3"
         >
-          {"network"}
+          {JSON.parse(data?.[2] as string)?.chain}
         </div>
         <div
           data-testid="round-name"
           className="w-full text-[24px] font-medium truncate pb-1 absolute bottom-1 px-2 text-white"
         >
-          {data?.[2] || "No name available"}
+          {JSON.parse(data?.[2] as string)?.projectName || "No name available"}
         </div>
       </div>
       <div className="p-4 space-y-4">
@@ -297,7 +293,7 @@ const RoundCard = ({
           data-testid="round-description"
           className="text-sm md:text-base text-ellipsis line-clamp-4 text-gray-400 leading-relaxed min-h-[96px]"
         >
-          {"No description available"}
+          {JSON.parse(data?.[2] as string)?.description || "No description available"}
         </div>
         <div className="flex gap-2 justfy-between items-center">
           <div className="flex-1">
@@ -306,13 +302,13 @@ const RoundCard = ({
               className="text-xs w-full font-mono whitespace-nowrap"
             >
               Round Start Date:
-              {/* {data?.startDate  && "startDate".toLocaleString()} */}
+              {JSON.parse(data?.[2] as string)?.startDate && JSON.parse(data?.[2] as string)?.startDate.toLocaleString()}
             </div>
             <div
               data-testid="days-left"
               className="text-xs w-full font-mono whitespace-nowrap"
             >
-              {"daysLeftToDate(data?.endDate)"} Days Left to Apply
+              {daysLeftToDate(JSON.parse(data?.[2] as string)?.endDate)} Days Left to Apply
             </div>
           </div>
           <div
@@ -330,12 +326,12 @@ const RoundCard = ({
               data-testid="approved-applications-count"
               className="text-xs text-gray-900 whitespace-nowrap inline-flex max-w-full w-fit items-center justify-center px-2 py-1.5 bg-gray-100 rounded-lg"
             >
-              {"projectsCount"} projects
+              {0} projects
             </div>
             <div className="font-mono text-xs text-gray-900 whitespace-nowrap inline-flex max-w-full w-fit items-center justify-center px-2 py-1.5 bg-gray-100 rounded-lg">
               <span className="mr-1" data-testid="match-amount">
                 <NumericFormat
-                  value={matchingPool ? matchingPool : 0}
+                  value={JSON.parse(data?.[2] as string)?.matchingPool || 0}
                   displayType="text"
                   thousandSeparator=","
                 />
