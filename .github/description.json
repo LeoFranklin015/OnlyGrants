@@ -1,0 +1,5 @@
+{
+    "Description" : "onlyGrants is a decentralized platform that eliminates popularity bias in donations by using fully homomorphic encryption (FHE) with quadratic voting and funding to keep donations and votes private.",
+    "TechStack" : [ "next","tailwindcss","typescript","graphql"],
+    "Prizes":["Control Accounts on Any EVM through NEAR","Worldcoin - Pool Prize"]
+}
